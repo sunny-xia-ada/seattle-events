@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10/11–10/17 西雅图活动精选</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif;background:#f4f1ec;color:#222;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding:12px}
+header{background:linear-gradient(135deg,#2b2d42,#6d597a);color:#fff;border-radius:16px;padding:16px}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.85;font-size:13px}
+.best{margin-top:10px;background:#ffd166;color:#222;border-radius:10px;padding:10px;font-size:13px}
+.note{font-size:12px;color:#7a5b00;background:#fff8e1;border-radius:10px;padding:8px;margin:10px 0}
+.bar{position:sticky;top:0;z-index:5;background:#f4f1ecf2;backdrop-filter:blur(6px);padding:8px 0;border-bottom:1px solid #ddd}
+.row{display:flex;gap:6px;overflow-x:auto;padding:3px 0;align-items:center;scrollbar-width:none}.row::-webkit-scrollbar{display:none}
+.lbl{font-size:11px;color:#888;flex:none}
+.chip{flex:none;border:1px solid #bbb;background:#fff;border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;color:#333}
+.chip.on{background:#2b2d42;color:#fff;border-color:#2b2d42}
+input[type=search],input[type=number],select{font-size:13px;padding:4px 8px;border:1px solid #bbb;border-radius:8px;background:#fff}
+input[type=search]{flex:1;min-width:120px}input[type=number]{width:70px}
+.tog{font-size:12px;flex:none;display:flex;align-items:center;gap:3px}
+.count{font-size:12px;color:#555;flex:none;margin-left:auto}
+button.reset{flex:none;font-size:12px;border:0;background:#e63946;color:#fff;border-radius:8px;padding:4px 10px}
+h2{font-size:15px;margin:16px 4px 8px;color:#444}
+.card{background:#fff;border-radius:14px;padding:12px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.08);cursor:pointer;position:relative}
+.card h3{margin:4px 34px 4px 0;font-size:15px}
+.meta{font-size:12.5px;color:#555;margin:1px 0}.meta b{color:#333}
+.desc{font-size:13.5px;margin:6px 0 0;display:none}.card.open .desc,.card.open .src{display:block}
+.more{font-size:11px;color:#999}.card.open .more{display:none}
+.star{position:absolute;top:8px;right:10px;font-size:22px;border:0;background:none;cursor:pointer;color:#ccc}.star.on{color:#f4b400}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;color:#fff;margin-right:4px}
+.首选{background:#e63946}.推荐{background:#2a9d8f}.低优先{background:#8d99ae}.冲突{background:#f4a261}
+.tag{display:inline-block;font-size:10.5px;padding:0 6px;border-radius:6px;margin-right:4px;border:1px solid}
+.booked{color:#2a7d2a;border-color:#2a7d2a;background:#eaf6ea}.verify{color:#b26b00;border-color:#b26b00;background:#fff4e0}.clash{color:#c0392b;border-color:#c0392b;background:#fdecea}
+.src{display:none;font-size:11px;color:#999;margin-top:6px;word-break:break-all}.src a{color:#999}
+.empty{color:#888;font-size:13px;text-align:center;padding:16px}
+</style></head><body><div class="wrap">
+<header><h1>西雅图活动精选</h1><p>2026/10/11（周日）– 10/17（周六）· Eastside 优先</p>
+<div class="best">⭐ <b>本周最佳：</b>EVAN《Death of Me》（周一）＋ TEN《OUTWEST》（周二），都在 Coffee Dance。非舞蹈活动首选周六晚的 FRACTURE! 数学鬼屋。</div></header>
+<div class="note">⚠️ 标「待核实」的 Coffee Dance 课时间未经官网确认，订课前请在预约日历里再核对。点卡片看详情，点 ☆ 收藏。</div>
+<div class="bar" id="bar"></div>
+<div id="list"></div>
+</div>
+<script>
+const DAYS=["周日","周一","周二","周三","周四","周五","周六"],DATES=["10/11","10/12","10/13","10/14","10/15","10/16","10/17"];
+const CATS=["舞蹈课","AI 活动","当季活动","K-pop 演唱会","可以略过"],VERDICTS=["首选","推荐","低优先","冲突"],RANK={首选:0,推荐:1,低优先:2,冲突:3};
+const CD="https://www.coffeedance.org/book-online";
+const DATA=[
+{id:"evan",cat:"舞蹈课",title:"《Death of Me》— EVAN",days:[1],start:"19:45",time:"7:45–9:15 PM",place:"Coffee Dance，12021 Northup Way Ste 202, Bellevue",area:"Eastside",price:23,priceText:"$23",level:"Level 2、chorus｜Rue",verdict:"首选",verify:true,desc:"男 solo，重点练 isolation、细腻 groove 和控制力，正好是你喜欢的男 solo 质感路线。周一完全空，Eastside 过去也方便。",src:CD},
+{id:"ten",cat:"舞蹈课",title:"《OUTWEST》— TEN",days:[2],start:"19:10",time:"7:10–8:40 PM",place:"Coffee Dance，Bellevue",area:"Eastside",price:23,priceText:"$23",level:"Level 2、chorus｜Mia",verdict:"首选",verify:true,desc:"男 solo，融合 hip-hop 和 R&B 的 groove，讲究 texture 和舞台气质。另有一节 Level 2–3、Last chorus 的 OUTWEST（Mia，时间未注明），学过 chorus 可以接着学。",src:CD},
+{id:"kiss",cat:"舞蹈课",title:"Original Heels《Kiss It Better》— Rihanna",days:[3],start:"19:45",time:"7:45–9:15 PM",place:"Coffee Dance，Bellevue",area:"Eastside",price:23,priceText:"$23",level:"Level 2｜Jennie",verdict:"推荐",booked:true,desc:"已经在你的日程里了，不用再订。",src:CD},
+{id:"grls",cat:"舞蹈课",title:"《GRLS》— TUIDE",days:[4],start:"19:10",time:"7:10 PM",place:"Coffee Dance，Bellevue",area:"Eastside",price:23,priceText:"$23",level:"Level 2｜Isha",verdict:"冲突",verify:true,clash:true,desc:"和你 7:00–8:30 在 Tina's 的 Intermediate Jazz 冲突，所以不推荐。",src:CD},
+{id:"goodboy",cat:"舞蹈课",title:"《Good Boy》— &TEAM",days:[],place:"Coffee Dance，Bellevue",area:"Eastside",price:23,priceText:"$23",level:"Level 2、Chorus 2｜Rue",verdict:"低优先",desc:"男团，适合练力量和整齐度。只有学过 chorus 1，或者很喜欢这首歌才值得去。",src:CD},
+{id:"eyes",cat:"舞蹈课",title:"Original Heels《Eyes on Fire》",days:[],place:"Coffee Dance，Bellevue",area:"Eastside",price:23,priceText:"$23",level:"Level 1–2｜Jennie",verdict:"低优先",desc:"原创 Heels 课，级别偏入门。你这周已经有两节 Heels 了，可以放在后面考虑。",src:CD},
+{id:"party",cat:"舞蹈课",title:"Original Jazz Funk《Party 4 U》",days:[],place:"Coffee Dance，Bellevue",area:"Eastside",price:23,priceText:"$23",level:"Level 1–2｜JN",verdict:"低优先",desc:"原创 Jazz Funk 课。",src:CD},
+{id:"ai",cat:"AI 活动",title:"Games & AI Demo Night（AI Tinkerers）",days:[3],start:"17:00",time:"5–8 PM",place:"Seattle（地点只发给通过审核的人）",area:"Seattle",price:0,priceText:"免费，需申请",level:"—",verdict:"冲突",clash:true,desc:"有 AI-native 游戏和 AI 辅助内容生产的 lightning demo，还有可以上手玩的 demo 桌，由 AWS 和 Metal Toad 赞助。和你 6:00 在 Tina's 的 Hip-hop Foundation 冲突，只能 5:00 到场待一会儿。申请不代表录取。",src:"https://seattle.aitinkerers.org/p/games-ai-demo-night-october-14th"},
+{id:"fracture",cat:"当季活动",title:"FRACTURE! Matheatre Haunted House",days:[4,5,6],start:"19:00",time:"After Dark 7–10 PM（持续到 10/25）",place:"Pacific Science Center，Seattle Center",area:"Seattle",price:10,priceText:"$10–$40 自选，可现场买票",level:"—",verdict:"首选",desc:"把数学解谜、鬼屋、逃脱房和现场戏剧混在一起，每 15 分钟进一组。周六 6:30 下课后去最合适。周四和 Jazz 课冲突，周五 7:30 下课后赶过去会比较紧。",src:"https://pacificsciencecenter.org/events/fracture/"},
+{id:"svgo",cat:"当季活动",title:"Seattle Video Game Orchestra 小组音乐会",days:[6],start:"18:00",time:"6–7 PM（5:30 开门）",place:"St Elizabeth's Episcopal Church, Burien",area:"Seattle",price:0,priceText:"免费，不用预约，有免费停车",level:"—",verdict:"冲突",clash:true,desc:"曲目包括原神、FF X、Silksong 等。和你 5:00–6:30 的 Intermediate Choreography 冲突，地点也远。",src:"https://www.eventbrite.com/e/seattle-video-game-orchestra-fall-small-group-concert-2026-registration-2001433709101"},
+{id:"cc",cat:"当季活动",title:"Consoles & Cardboard",days:[0],start:"14:00",time:"2–9 PM",place:"Stoup Brewing Capitol Hill",area:"Seattle",price:null,priceText:"未注明",level:"—",verdict:"低优先",desc:"有电子游戏、桌游、VR 和 Switch 多人游戏。周日你下午和傍晚都有课，地点又在 Capitol Hill。",src:"https://momentsapp.no/event/99cdc39e-d17c-4f09-8ae8-6d5266558677"},
+{id:"prseries",cat:"可以略过",title:"PopRox 8 周系列课",days:[1,3,5],start:"20:30",time:"周一 Hip Hop Fusion / 周三 Dance After Dark / 周五 Beginner Burlesque，均 8:30–10 PM",place:"PopRox Capitol Hill",area:"Seattle",price:360,priceText:"$360",level:"见各系列",verdict:"低优先",desc:"都要长期出勤。本周 PopRox 也没找到可以单次报名的 K-pop 或 Heels 课。",src:"https://www.poproxdance.com/adultseries"},
+{id:"jaguar",cat:"可以略过",title:"PopRox Beginner Heels《Jaguar》— Victoria Monét",days:[6],start:"10:00",time:"10–11:30 AM（8 周系列，10/17 开始）",place:"PopRox U-District",area:"Seattle",price:360,priceText:"$360",level:"Beginner｜May Qiang",verdict:"低优先",desc:"入门级，你已经超过这个水平了。",src:"https://www.poproxdance.com/adultseries"},
+{id:"japan",cat:"可以略过",title:"Japan Week（Bellevue College）",days:[],place:"Bellevue College",area:"Eastside",price:0,priceText:"免费",level:"—",verdict:"低优先",desc:"只在 10/10，已经过了。",src:"https://studentweb.bellevuecollege.edu/japan-week/2026-saturday-schedule/"}
+];
+const S0={cat:[],day:[],verdict:[],area:[],hideClash:false,bookedOnly:false,favOnly:false,maxPrice:"",q:"",sort:"time"};
+let S=JSON.parse(JSON.stringify(S0));
+let favs=new Set(JSON.parse(localStorage.getItem("sdFavs")||"[]")),open=new Set();
+// initial state from URL hash, e.g. #cat=舞蹈课&day=1
+new URLSearchParams(decodeURIComponent(location.hash.slice(1))).forEach((v,k)=>{if(Array.isArray(S[k]))S[k]=v.split(",").map(x=>k==="day"?+x:x);else if(k in S)S[k]=v==="true"?true:v});
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function chips(key,vals,labels){return vals.map((v,i)=>`<button class="chip ${S[key].includes(v)?"on":""}" data-k="${key}" data-v="${v}">${labels?labels[i]:v}</button>`).join("")}
+function renderBar(){bar.innerHTML=`
+<div class="row"><span class="lbl">类别</span>${chips("cat",CATS)}</div>
+<div class="row"><span class="lbl">日期</span>${chips("day",[0,1,2,3,4,5,6,-1],DAYS.map((d,i)=>d+" "+DATES[i]).concat("时间未注明"))}</div>
+<div class="row"><span class="lbl">判断</span>${chips("verdict",VERDICTS)}<span class="lbl">区域</span>${chips("area",["Eastside","Seattle"])}</div>
+<div class="row"><label class="tog"><input type="checkbox" id="hc" ${S.hideClash?"checked":""}>隐藏冲突</label><label class="tog"><input type="checkbox" id="bo" ${S.bookedOnly?"checked":""}>只看已订</label><label class="tog"><input type="checkbox" id="fo" ${S.favOnly?"checked":""}>只看收藏</label><span class="lbl">价格≤$</span><input type="number" id="mp" min="0" value="${S.maxPrice}" placeholder="不限"></div>
+<div class="row"><input type="search" id="q" placeholder="搜索歌名/老师/地点…" value="${esc(S.q)}"><select id="so"><option value="time">按时间</option><option value="rank" ${S.sort==="rank"?"selected":""}>按优先级</option></select><span class="count" id="cnt"></span><button class="reset" id="rs">重置</button></div>`}
+function match(d){
+ if(S.cat.length&&!S.cat.includes(d.cat))return false;
+ if(S.day.length&&!S.day.some(x=>x===-1?!d.days.length:d.days.includes(x)))return false;
+ if(S.verdict.length&&!S.verdict.includes(d.verdict))return false;
+ if(S.area.length&&!S.area.includes(d.area))return false;
+ if(S.hideClash&&(d.clash||d.verdict==="冲突"))return false;
+ if(S.bookedOnly&&!d.booked)return false;
+ if(S.favOnly&&!favs.has(d.id))return false;
+ if(S.maxPrice!==""&&(d.price===null||d.price>+S.maxPrice))return false;
+ if(S.q){const t=[d.title,d.place,d.level,d.desc,d.cat,d.priceText].join(" ").toLowerCase();if(!t.includes(S.q.toLowerCase()))return false}
+ return true}
+function card(d,day){const o=open.has(d.id);return `<div class="card ${o?"open":""}" data-id="${d.id}">
+<button class="star ${favs.has(d.id)?"on":""}" data-star="${d.id}" aria-label="收藏">${favs.has(d.id)?"★":"☆"}</button>
+<span class="badge ${d.verdict}">${d.verdict}</span>${d.booked?'<span class="tag booked">已订</span>':""}${d.verify?'<span class="tag verify">待核实</span>':""}${d.clash?'<span class="tag clash">与日程冲突</span>':""}
+<h3>${esc(d.title)}</h3>
+<p class="meta"><b>时间</b> ${d.days.length?d.days.map(i=>DAYS[i]+" "+DATES[i]).join("、")+(d.time?" · "+esc(d.time):""):"时间未注明"}</p>
+<p class="meta"><b>地点</b> ${esc(d.place)}（${d.area}）</p>
+<p class="meta"><b>价格</b> ${esc(d.priceText)} · <b>级别/老师</b> ${esc(d.level)} · <span style="color:#888">${d.cat}</span></p>
+<p class="more">点开看详情 ▾</p><p class="desc">${esc(d.desc)}</p><p class="src">来源：<a href="${d.src}" target="_blank" rel="noopener">${esc(d.src.replace(/^https?:\/\//,"").slice(0,48))}</a></p></div>`}
+function renderList(){
+ const items=DATA.filter(match);cnt.textContent=`${items.length} / ${DATA.length} 项`;
+ const firstDay=d=>{const ds=S.day.length?d.days.filter(x=>S.day.includes(x)):d.days;return ds.length?ds[0]:7};
+ const groups={};items.forEach(d=>{const k=firstDay(d);(groups[k]=groups[k]||[]).push(d)});
+ let h="";
+ if(S.sort==="time"){Object.keys(groups).map(Number).sort((a,b)=>a-b).forEach(k=>{h+=`<h2>${k===7?"时间未注明":DAYS[k]+" "+DATES[k]}</h2>`;groups[k].sort((a,b)=>(a.start||"").localeCompare(b.start||"")||RANK[a.verdict]-RANK[b.verdict]).forEach(d=>h+=card(d))})}
+ else{items.sort((a,b)=>RANK[a.verdict]-RANK[b.verdict]||firstDay(a)-firstDay(b)).forEach(d=>h+=card(d))}
+ if(!S.cat.length||S.cat.includes("K-pop 演唱会"))if(!items.some(d=>d.cat==="K-pop 演唱会"))h+=`<h2>K-pop 演唱会</h2><div class="empty">本周暂无</div>`;
+ if(!items.length&&!h)h=`<div class="empty">没有符合条件的活动，试试重置筛选</div>`;
+ list.innerHTML=h}
+function render(){renderBar();renderList()}
+bar.addEventListener("click",e=>{const c=e.target.closest(".chip");if(c){const k=c.dataset.k,v=k==="day"?+c.dataset.v:c.dataset.v,a=S[k],i=a.indexOf(v);i<0?a.push(v):a.splice(i,1);render()}
+ if(e.target.id==="rs"){S=JSON.parse(JSON.stringify(S0));history.replaceState(null,"",location.pathname);render()}});
+bar.addEventListener("change",e=>{const t=e.target;if(t.id==="hc")S.hideClash=t.checked;if(t.id==="bo")S.bookedOnly=t.checked;if(t.id==="fo")S.favOnly=t.checked;if(t.id==="so")S.sort=t.value;renderList()});
+bar.addEventListener("input",e=>{const t=e.target;if(t.id==="q")S.q=t.value;if(t.id==="mp")S.maxPrice=t.value;if(t.id==="q"||t.id==="mp")renderList()});
+list.addEventListener("click",e=>{if(e.target.closest("a"))return;const s=e.target.closest("[data-star]");
+ if(s){const id=s.dataset.star;favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("sdFavs",JSON.stringify([...favs]));renderList();return}
+ const c=e.target.closest(".card");if(c){const id=c.dataset.id;open.has(id)?open.delete(id):open.add(id);c.classList.toggle("open")}});
+render();
+</script></body></html>

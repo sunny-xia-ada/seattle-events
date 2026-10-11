@@ -1,44 +1,56 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>10/11–10/17 西雅图活动精选</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif;background:#f4f1ec;color:#222;line-height:1.5}
-.wrap{max-width:720px;margin:0 auto;padding:12px}
-header{background:linear-gradient(135deg,#2b2d42,#6d597a);color:#fff;border-radius:16px;padding:16px}
-header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.85;font-size:13px}
-.best{margin-top:10px;background:#ffd166;color:#222;border-radius:10px;padding:10px;font-size:13px}
-.note{font-size:12px;color:#7a5b00;background:#fff8e1;border-radius:10px;padding:8px;margin:10px 0}
-.bar{position:sticky;top:0;z-index:5;background:#f4f1ecf2;backdrop-filter:blur(6px);padding:8px 0;border-bottom:1px solid #ddd}
-.row{display:flex;gap:6px;overflow-x:auto;padding:3px 0;align-items:center;scrollbar-width:none}.row::-webkit-scrollbar{display:none}
-.lbl{font-size:11px;color:#888;flex:none}
-.chip{flex:none;border:1px solid #bbb;background:#fff;border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;color:#333}
-.chip.on{background:#2b2d42;color:#fff;border-color:#2b2d42}
-input[type=search],input[type=number],select{font-size:13px;padding:4px 8px;border:1px solid #bbb;border-radius:8px;background:#fff}
-input[type=search]{flex:1;min-width:120px}input[type=number]{width:70px}
-.tog{font-size:12px;flex:none;display:flex;align-items:center;gap:3px}
-.count{font-size:12px;color:#555;flex:none;margin-left:auto}
-button.reset{flex:none;font-size:12px;border:0;background:#e63946;color:#fff;border-radius:8px;padding:4px 10px}
-h2{font-size:15px;margin:16px 4px 8px;color:#444}
-.card{background:#fff;border-radius:14px;padding:12px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.08);cursor:pointer;position:relative}
-.card h3{margin:4px 34px 4px 0;font-size:15px}
-.meta{font-size:12.5px;color:#555;margin:1px 0}.meta b{color:#333}
-.desc{font-size:13.5px;margin:6px 0 0;display:none}.card.open .desc,.card.open .src{display:block}
-.more{font-size:11px;color:#999}.card.open .more{display:none}
-.star{position:absolute;top:8px;right:10px;font-size:22px;border:0;background:none;cursor:pointer;color:#ccc}.star.on{color:#f4b400}
-.badge{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;color:#fff;margin-right:4px}
-.首选{background:#e63946}.推荐{background:#2a9d8f}.低优先{background:#8d99ae}.冲突{background:#f4a261}
-.tag{display:inline-block;font-size:10.5px;padding:0 6px;border-radius:6px;margin-right:4px;border:1px solid}
-.booked{color:#2a7d2a;border-color:#2a7d2a;background:#eaf6ea}.verify{color:#b26b00;border-color:#b26b00;background:#fff4e0}.clash{color:#c0392b;border-color:#c0392b;background:#fdecea}
-.src{display:none;font-size:11px;color:#999;margin-top:6px;word-break:break-all}.src a{color:#999}
-.empty{color:#888;font-size:13px;text-align:center;padding:16px}
+<meta name="digest-version" content="v3-calm">
+<title>本周西雅图 · 10/11–10/17</title><style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif;background:#fafaf7;color:#2d3436;font-size:17px;line-height:1.6}
+.wrap{max-width:640px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:26px;font-weight:600;margin:0}
+.sub{color:#8a9097;font-size:15px;margin:4px 0 18px}
+.picks{background:#eef4f1;border-radius:14px;padding:14px 16px;font-size:16px;color:#2f5d50;margin-bottom:22px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:0;background:#eceae4;color:#555;border-radius:999px;padding:8px 16px;font-size:15px;cursor:pointer}
+.chip.on{background:#3d6b5e;color:#fff}
+details.more{margin:6px 0 20px}details.more summary{color:#3d6b5e;font-size:15px;cursor:pointer;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+.panel{margin-top:12px;display:grid;gap:12px;font-size:15px;background:#fff;border-radius:14px;padding:16px;border:1px solid #eee}
+.panel input[type=search],.panel input[type=number],.panel select{font-size:15px;padding:8px 10px;border:1px solid #ddd;border-radius:10px;background:#fff;width:100%}
+.panel label{display:flex;align-items:center;gap:8px}
+.panel .r{display:flex;gap:10px}.panel .r>*{flex:1}
+.reset{border:0;background:none;color:#b0574a;font-size:15px;text-align:left;padding:0;cursor:pointer}
+.count{color:#8a9097;font-size:14px;margin:0 0 10px}
+.card{background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:12px;border:1px solid #efede8;cursor:pointer}
+.l1{display:flex;align-items:baseline;gap:10px}
+.when{color:#3d6b5e;font-size:14px;font-weight:600;flex:none;min-width:76px}
+.title{font-weight:600;flex:1}
+.ic{font-size:12px;font-weight:700;width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.ic.ok{background:#e3f1e8;color:#2f7a4f}.ic.warn{background:#fbeee2;color:#b8691d}
+.l2{display:flex;justify-content:space-between;align-items:center;color:#8a9097;font-size:14px;margin-top:4px;padding-left:86px}
+.badge{font-size:12px;padding:2px 10px;border-radius:999px;flex:none}
+.首选{background:#e8f0ec;color:#2f5d50}.推荐{background:#eaf0f6;color:#3b5f80}.低优先{background:#f1f1ef;color:#888}.冲突{background:#fbeee2;color:#b8691d}
+.det{display:none;margin-top:12px;padding-top:12px;border-top:1px solid #f0eee9;font-size:15px;color:#555}
+.card.open .det{display:block}.det p{margin:4px 0}
+.star{border:0;background:none;font-size:15px;color:#3d6b5e;padding:0;cursor:pointer;margin-top:6px}
+.src{font-size:12px;color:#aaa;word-break:break-all}.src a{color:#aaa}
+.empty{color:#aaa;text-align:center;padding:30px 0}
 </style></head><body><div class="wrap">
-<header><h1>西雅图活动精选</h1><p>2026/10/11（周日）– 10/17（周六）· Eastside 优先</p>
-<div class="best">⭐ <b>本周最佳：</b>EVAN《Death of Me》（周一）＋ TEN《OUTWEST》（周二），都在 Coffee Dance。非舞蹈活动首选周六晚的 FRACTURE! 数学鬼屋。</div></header>
-<div class="note">⚠️ 标「待核实」的 Coffee Dance 课时间未经官网确认，订课前请在预约日历里再核对。点卡片看详情，点 ☆ 收藏。</div>
-<div class="bar" id="bar"></div>
-<div id="list"></div>
-</div>
-<script>
-const DAYS=["周日","周一","周二","周三","周四","周五","周六"],DATES=["10/11","10/12","10/13","10/14","10/15","10/16","10/17"];
-const CATS=["舞蹈课","AI 活动","当季活动","K-pop 演唱会","可以略过"],VERDICTS=["首选","推荐","低优先","冲突"],RANK={首选:0,推荐:1,低优先:2,冲突:3};
+<h1>本周西雅图</h1><div class="sub">10/11 周日 – 10/17 周六</div>
+<div class="picks">⭐ EVAN《Death of Me》周一 · TEN《OUTWEST》周二 · FRACTURE! 数学鬼屋 周六晚</div>
+<div class="chips" id="cats"></div><div class="chips" id="days"></div>
+<details class="more"><summary>更多筛选 ▾</summary><div class="panel">
+<input type="search" id="q" placeholder="搜索歌名、老师、地点">
+<div class="r"><select id="area"><option value="">所有区域</option><option>Eastside</option><option>Seattle</option></select>
+<select id="sort"><option value="time">按时间</option><option value="rank">按优先级</option></select></div>
+<input type="number" id="mp" min="0" placeholder="最高价格 $（不限）">
+<label><input type="checkbox" id="hc">隐藏冲突</label>
+<label><input type="checkbox" id="fo">只看收藏</label>
+<label><input type="checkbox" id="sk">显示「可以略过」</label>
+<button class="reset" id="rs">重置全部</button></div></details>
+<div class="count" id="cnt"></div><div id="list"></div>
+<p class="src" style="margin-top:24px">「!」= 时间待核实或与日程冲突（Coffee Dance 时间未经官网确认，订课前请核对）· 「✓」= 已订</p>
+</div><script>
+const DAYS=["周日","周一","周二","周三","周四","周五","周六"],SD=["日","一","二","三","四","五","六"],DATES=["10/11","10/12","10/13","10/14","10/15","10/16","10/17"];
+const RANK={首选:0,推荐:1,低优先:2,冲突:3};
+const CATS=[["","全部"],["舞蹈课","舞蹈"],["AI 活动","AI"],["当季活动","活动"],["K-pop 演唱会","演唱会"]];
 const CD="https://www.coffeedance.org/book-online";
 const DATA=[
 {id:"evan",cat:"舞蹈课",title:"《Death of Me》— EVAN",days:[1],start:"19:45",time:"7:45–9:15 PM",place:"Coffee Dance，12021 Northup Way Ste 202, Bellevue",area:"Eastside",price:23,priceText:"$23",level:"Level 2、chorus｜Rue",verdict:"首选",verify:true,desc:"男 solo，重点练 isolation、细腻 groove 和控制力，正好是你喜欢的男 solo 质感路线。周一完全空，Eastside 过去也方便。",src:CD},
@@ -56,55 +68,36 @@ const DATA=[
 {id:"jaguar",cat:"可以略过",title:"PopRox Beginner Heels《Jaguar》— Victoria Monét",days:[6],start:"10:00",time:"10–11:30 AM（8 周系列，10/17 开始）",place:"PopRox U-District",area:"Seattle",price:360,priceText:"$360",level:"Beginner｜May Qiang",verdict:"低优先",desc:"入门级，你已经超过这个水平了。",src:"https://www.poproxdance.com/adultseries"},
 {id:"japan",cat:"可以略过",title:"Japan Week（Bellevue College）",days:[],place:"Bellevue College",area:"Eastside",price:0,priceText:"免费",level:"—",verdict:"低优先",desc:"只在 10/10，已经过了。",src:"https://studentweb.bellevuecollege.edu/japan-week/2026-saturday-schedule/"}
 ];
-const S0={cat:[],day:[],verdict:[],area:[],hideClash:false,bookedOnly:false,favOnly:false,maxPrice:"",q:"",sort:"time"};
-let S=JSON.parse(JSON.stringify(S0));
+let S={cat:"",day:null,q:"",area:"",sort:"time",mp:"",hc:false,fo:false,sk:false};
 let favs=new Set(JSON.parse(localStorage.getItem("sdFavs")||"[]")),open=new Set();
-// initial state from URL hash, e.g. #cat=舞蹈课&day=1
-new URLSearchParams(decodeURIComponent(location.hash.slice(1))).forEach((v,k)=>{if(Array.isArray(S[k]))S[k]=v.split(",").map(x=>k==="day"?+x:x);else if(k in S)S[k]=v==="true"?true:v});
+const p=new URLSearchParams(decodeURIComponent(location.hash.slice(1)));if(p.get("cat"))S.cat=p.get("cat");if(p.get("day"))S.day=+p.get("day");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function chips(key,vals,labels){return vals.map((v,i)=>`<button class="chip ${S[key].includes(v)?"on":""}" data-k="${key}" data-v="${v}">${labels?labels[i]:v}</button>`).join("")}
-function renderBar(){bar.innerHTML=`
-<div class="row"><span class="lbl">类别</span>${chips("cat",CATS)}</div>
-<div class="row"><span class="lbl">日期</span>${chips("day",[0,1,2,3,4,5,6,-1],DAYS.map((d,i)=>d+" "+DATES[i]).concat("时间未注明"))}</div>
-<div class="row"><span class="lbl">判断</span>${chips("verdict",VERDICTS)}<span class="lbl">区域</span>${chips("area",["Eastside","Seattle"])}</div>
-<div class="row"><label class="tog"><input type="checkbox" id="hc" ${S.hideClash?"checked":""}>隐藏冲突</label><label class="tog"><input type="checkbox" id="bo" ${S.bookedOnly?"checked":""}>只看已订</label><label class="tog"><input type="checkbox" id="fo" ${S.favOnly?"checked":""}>只看收藏</label><span class="lbl">价格≤$</span><input type="number" id="mp" min="0" value="${S.maxPrice}" placeholder="不限"></div>
-<div class="row"><input type="search" id="q" placeholder="搜索歌名/老师/地点…" value="${esc(S.q)}"><select id="so"><option value="time">按时间</option><option value="rank" ${S.sort==="rank"?"selected":""}>按优先级</option></select><span class="count" id="cnt"></span><button class="reset" id="rs">重置</button></div>`}
-function match(d){
- if(S.cat.length&&!S.cat.includes(d.cat))return false;
- if(S.day.length&&!S.day.some(x=>x===-1?!d.days.length:d.days.includes(x)))return false;
- if(S.verdict.length&&!S.verdict.includes(d.verdict))return false;
- if(S.area.length&&!S.area.includes(d.area))return false;
- if(S.hideClash&&(d.clash||d.verdict==="冲突"))return false;
- if(S.bookedOnly&&!d.booked)return false;
- if(S.favOnly&&!favs.has(d.id))return false;
- if(S.maxPrice!==""&&(d.price===null||d.price>+S.maxPrice))return false;
- if(S.q){const t=[d.title,d.place,d.level,d.desc,d.cat,d.priceText].join(" ").toLowerCase();if(!t.includes(S.q.toLowerCase()))return false}
- return true}
-function card(d,day){const o=open.has(d.id);return `<div class="card ${o?"open":""}" data-id="${d.id}">
-<button class="star ${favs.has(d.id)?"on":""}" data-star="${d.id}" aria-label="收藏">${favs.has(d.id)?"★":"☆"}</button>
-<span class="badge ${d.verdict}">${d.verdict}</span>${d.booked?'<span class="tag booked">已订</span>':""}${d.verify?'<span class="tag verify">待核实</span>':""}${d.clash?'<span class="tag clash">与日程冲突</span>':""}
-<h3>${esc(d.title)}</h3>
-<p class="meta"><b>时间</b> ${d.days.length?d.days.map(i=>DAYS[i]+" "+DATES[i]).join("、")+(d.time?" · "+esc(d.time):""):"时间未注明"}</p>
-<p class="meta"><b>地点</b> ${esc(d.place)}（${d.area}）</p>
-<p class="meta"><b>价格</b> ${esc(d.priceText)} · <b>级别/老师</b> ${esc(d.level)} · <span style="color:#888">${d.cat}</span></p>
-<p class="more">点开看详情 ▾</p><p class="desc">${esc(d.desc)}</p><p class="src">来源：<a href="${d.src}" target="_blank" rel="noopener">${esc(d.src.replace(/^https?:\/\//,"").slice(0,48))}</a></p></div>`}
-function renderList(){
- const items=DATA.filter(match);cnt.textContent=`${items.length} / ${DATA.length} 项`;
- const firstDay=d=>{const ds=S.day.length?d.days.filter(x=>S.day.includes(x)):d.days;return ds.length?ds[0]:7};
- const groups={};items.forEach(d=>{const k=firstDay(d);(groups[k]=groups[k]||[]).push(d)});
- let h="";
- if(S.sort==="time"){Object.keys(groups).map(Number).sort((a,b)=>a-b).forEach(k=>{h+=`<h2>${k===7?"时间未注明":DAYS[k]+" "+DATES[k]}</h2>`;groups[k].sort((a,b)=>(a.start||"").localeCompare(b.start||"")||RANK[a.verdict]-RANK[b.verdict]).forEach(d=>h+=card(d))})}
- else{items.sort((a,b)=>RANK[a.verdict]-RANK[b.verdict]||firstDay(a)-firstDay(b)).forEach(d=>h+=card(d))}
- if(!S.cat.length||S.cat.includes("K-pop 演唱会"))if(!items.some(d=>d.cat==="K-pop 演唱会"))h+=`<h2>K-pop 演唱会</h2><div class="empty">本周暂无</div>`;
- if(!items.length&&!h)h=`<div class="empty">没有符合条件的活动，试试重置筛选</div>`;
- list.innerHTML=h}
-function render(){renderBar();renderList()}
-bar.addEventListener("click",e=>{const c=e.target.closest(".chip");if(c){const k=c.dataset.k,v=k==="day"?+c.dataset.v:c.dataset.v,a=S[k],i=a.indexOf(v);i<0?a.push(v):a.splice(i,1);render()}
- if(e.target.id==="rs"){S=JSON.parse(JSON.stringify(S0));history.replaceState(null,"",location.pathname);render()}});
-bar.addEventListener("change",e=>{const t=e.target;if(t.id==="hc")S.hideClash=t.checked;if(t.id==="bo")S.bookedOnly=t.checked;if(t.id==="fo")S.favOnly=t.checked;if(t.id==="so")S.sort=t.value;renderList()});
-bar.addEventListener("input",e=>{const t=e.target;if(t.id==="q")S.q=t.value;if(t.id==="mp")S.maxPrice=t.value;if(t.id==="q"||t.id==="mp")renderList()});
-list.addEventListener("click",e=>{if(e.target.closest("a"))return;const s=e.target.closest("[data-star]");
- if(s){const id=s.dataset.star;favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("sdFavs",JSON.stringify([...favs]));renderList();return}
- const c=e.target.closest(".card");if(c){const id=c.dataset.id;open.has(id)?open.delete(id):open.add(id);c.classList.toggle("open")}});
+function chips(){cats.innerHTML=CATS.map(([v,l])=>`<button class="chip ${S.cat===v?"on":""}" data-cat="${v}">${l}</button>`).join("");
+ days.innerHTML=`<button class="chip ${S.day===null?"on":""}" data-day="">全部</button>`+SD.map((d,i)=>`<button class="chip ${S.day===i?"on":""}" data-day="${i}">${d} ${DATES[i].slice(3)}</button>`).join("")}
+function ok(d){if(d.cat==="可以略过"?!(S.sk||S.cat==="可以略过"):false)return false;
+ if(S.cat&&d.cat!==S.cat)return false;if(S.day!==null&&!d.days.includes(S.day))return false;
+ if(S.area&&d.area!==S.area)return false;if(S.hc&&(d.clash||d.verdict==="冲突"))return false;if(S.fo&&!favs.has(d.id))return false;
+ if(S.mp!==""&&(d.price===null||d.price>+S.mp))return false;
+ if(S.q&&![d.title,d.place,d.level,d.desc].join(" ").toLowerCase().includes(S.q.toLowerCase()))return false;return true}
+const fd=d=>S.day!==null?S.day:(d.days.length?d.days[0]:7);
+function when(d){const ds=d.days.length?d.days.map(i=>SD[i]).join("/"):"时间未注明";const t=d.start?(" "+(+d.start.slice(0,2)%12||12)+":"+d.start.slice(3)):"";return d.days.length?"周"+ds+t:ds}
+function card(d){const ic=d.booked?'<span class="ic ok" title="已订">✓</span>':(d.clash||d.verify)?`<span class="ic warn" title="${d.clash?"与日程冲突":"时间待核实"}">!</span>`:"";
+ return `<div class="card ${open.has(d.id)?"open":""}" data-id="${d.id}"><div class="l1"><span class="when">${when(d)}</span><span class="title">${esc(d.title)}</span>${ic}</div>
+<div class="l2"><span>${esc(d.place.split("，")[0])} · ${esc(d.priceText.split("，")[0])}</span><span class="badge ${d.verdict}">${d.verdict}</span></div>
+<div class="det"><p>${d.days.map(i=>DAYS[i]+" "+DATES[i]).join("、")||"时间未注明"}${d.time?" · "+esc(d.time):""}</p><p>${esc(d.place)}</p><p>${esc(d.priceText)}${d.level!=="—"?" · "+esc(d.level):""}</p>
+${d.booked?"<p>✓ 已订</p>":""}${d.clash?"<p>! 与日程冲突</p>":""}${d.verify?"<p>! 时间待核实</p>":""}<p>${esc(d.desc)}</p>
+<button class="star" data-star="${d.id}">${favs.has(d.id)?"★ 已收藏":"☆ 收藏"}</button><p class="src">来源：<a href="${d.src}" target="_blank" rel="noopener">${esc(d.src.replace(/^https?:\/\//,"").slice(0,44))}</a></p></div></div>`}
+function render(){chips();const it=DATA.filter(ok);
+ it.sort(S.sort==="rank"?(a,b)=>RANK[a.verdict]-RANK[b.verdict]||fd(a)-fd(b):(a,b)=>fd(a)-fd(b)||(a.start||"").localeCompare(b.start||""));
+ cnt.textContent=`${it.length} 项`;
+ list.innerHTML=it.length?it.map(card).join(""):`<div class="empty">${S.cat==="K-pop 演唱会"?"本周暂无演唱会":"没有符合条件的活动"}</div>`}
+cats.onclick=e=>{const b=e.target.closest("[data-cat]");if(b){S.cat=b.dataset.cat;render()}};
+days.onclick=e=>{const b=e.target.closest("[data-day]");if(b){S.day=b.dataset.day===""?null:+b.dataset.day;render()}};
+q.oninput=()=>{S.q=q.value;render()};mp.oninput=()=>{S.mp=mp.value;render()};area.onchange=()=>{S.area=area.value;render()};sort.onchange=()=>{S.sort=sort.value;render()};
+hc.onchange=()=>{S.hc=hc.checked;render()};fo.onchange=()=>{S.fo=fo.checked;render()};sk.onchange=()=>{S.sk=sk.checked;render()};
+rs.onclick=()=>{S={cat:"",day:null,q:"",area:"",sort:"time",mp:"",hc:false,fo:false,sk:false};q.value=mp.value=area.value="";sort.value="time";hc.checked=fo.checked=sk.checked=false;render()};
+list.onclick=e=>{if(e.target.closest("a"))return;const s=e.target.closest("[data-star]");
+ if(s){const id=s.dataset.star;favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("sdFavs",JSON.stringify([...favs]));render();return}
+ const c=e.target.closest(".card");if(c){const id=c.dataset.id;open.has(id)?open.delete(id):open.add(id);c.classList.toggle("open")}};
 render();
 </script></body></html>

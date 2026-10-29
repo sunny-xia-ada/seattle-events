@@ -1,0 +1,101 @@
+name: push-new-events
+on:
+  push:
+    branches: [main]
+    paths: [index.html]            # the Wednesday digest commit touches index.html
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "normal = send new events, seed = mark current events as already sent (no push), test = send one test push"
+        default: test
+        type: choice
+        options: [test, seed, normal]
+
+concurrency: { group: push-events, cancel-in-progress: false }
+permissions: { contents: write }     # needed only to update the push-state branch (not main)
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MODE: ${{ github.event.inputs.mode || 'normal' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check push secrets
+        id: secrets
+        env:
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          PUSH_SUBSCRIPTION: ${{ secrets.PUSH_SUBSCRIPTION }}
+        run: |
+          if [ -n "$VAPID_PRIVATE_KEY" ] && [ -n "$PUSH_SUBSCRIPTION" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+            echo "PUSH_SECRETS_OK=true" >> "$GITHUB_ENV"
+          else
+            echo "push secrets not configured yet, skipping"
+            echo "::notice::push secrets not configured yet, skipping"
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "PUSH_SECRETS_OK=false" >> "$GITHUB_ENV"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.secrets.outputs.configured == 'true'
+        with: { node-version: 22 }
+
+      - if: steps.secrets.outputs.configured == 'true'
+        run: npm install --prefix scripts --no-audit --no-fund
+
+      - name: Load dedupe state (branch push-state, does not trigger a Pages rebuild)
+        id: state
+        if: steps.secrets.outputs.configured == 'true'
+        run: |
+          set -euo pipefail
+          mode="$MODE"
+          remote_code=0
+          git ls-remote --exit-code --heads origin refs/heads/push-state >/dev/null 2>&1 || remote_code=$?
+          if [ "$remote_code" -eq 0 ]; then
+            git fetch --depth=1 origin push-state
+            git show FETCH_HEAD:sent.json > sent.json
+          elif [ "$remote_code" -eq 2 ]; then
+            echo '{"sent":{}}' > sent.json
+            # First run: branch is absent. In normal mode, seed instead of pushing every current event.
+            if [ "$mode" = "normal" ]; then
+              echo "push-state branch does not exist yet; running as seed (mark current events sent, no push)"
+              mode=seed
+              echo "MODE=seed" >> "$GITHUB_ENV"
+            fi
+          else
+            echo "::error::failed to read push-state (ls-remote exit $remote_code)"
+            exit 1
+          fi
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+
+      - name: Wait until the new page is live on GitHub Pages (so the deep link finds the card)
+        if: steps.secrets.outputs.configured == 'true' && steps.state.outputs.mode == 'normal'
+        run: |
+          sha=$(sha1sum index.html | cut -c1-8)
+          for i in $(seq 1 40); do
+            curl -fsS "https://sunny-xia-ada.github.io/seattle-events/?cb=$RANDOM$i" -o live.html || true
+            if cmp -s live.html index.html; then echo "live after $i checks"; exit 0; fi
+            sleep 15
+          done
+          echo "::warning::Pages still serving old index.html after 10 min; sending anyway (page auto-reloads on a stale cache)"
+
+      - name: Send push
+        if: steps.secrets.outputs.configured == 'true'
+        run: node scripts/send-push.mjs
+        env:
+          MODE: ${{ steps.state.outputs.mode }}
+          VAPID_PUBLIC_KEY: ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
+          PUSH_SUBSCRIPTION: ${{ secrets.PUSH_SUBSCRIPTION }}
+
+      - name: Save dedupe state
+        if: always() && steps.secrets.outputs.configured == 'true' && steps.state.outcome == 'success' && steps.state.outputs.mode != 'test'
+        run: |
+          mkdir /tmp/st && cp sent.json /tmp/st/ && cd /tmp/st
+          git init -q -b push-state && git config user.name "push-bot" && git config user.email "push-bot@users.noreply.github.com"
+          git add sent.json && git commit -qm "state $(date -u +%FT%TZ)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" push-state

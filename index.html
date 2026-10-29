@@ -147,4 +147,4 @@ list.onclick=e=>{if(e.target.closest("a"))return;const s=e.target.closest("[data
  if(s){const id=s.dataset.star;favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("sdFavs",JSON.stringify([...favs]));render();return}
  const c=e.target.closest(".card");if(c){const id=c.dataset.id;open.has(id)?open.delete(id):open.add(id);c.classList.toggle("open")}};
 render();
-</script></body></html>
+</script><script src="push.js" defer></script></body></html>

@@ -70,4 +70,61 @@
     };
   }
   refresh();
+
+  /* ---------- auto-refresh when a new index.html is published ----------
+     iOS home-screen web apps resume the previous page in memory, and GitHub Pages
+     sends Cache-Control: max-age=600, so a reopen can show last week's digest.
+     Baseline is a hash of a no-store fetch at load (not document.outerHTML — the
+     live DOM has the push bar injected and would never match, causing a reload loop).
+     Later checks reload only when the bytes change, and the new page sets a new baseline. */
+  const CHECK_MS = 60000;
+  let baseline = null;
+  let lastCheck = 0;
+  let reloading = false;
+
+  async function hashText(text) {
+    try {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+      return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    } catch {
+      let h = 2166136261;
+      for (let i = 0; i < text.length; i++) { h ^= text.charCodeAt(i); h = Math.imul(h, 16777619); }
+      return (h >>> 0).toString(16);
+    }
+  }
+  async function fetchDocument() {
+    const res = await fetch(location.pathname + '?v=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error(String(res.status));
+    return res.text();
+  }
+  const established = (async () => {
+    try { baseline = await hashText(await fetchDocument()); } catch { baseline = null; }
+  })();
+
+  async function checkForUpdate() {
+    const now = Date.now();
+    if (reloading || now - lastCheck < CHECK_MS) return;
+    lastCheck = now;
+    try {
+      await established;
+      if ('serviceWorker' in navigator) {
+        try {
+          const reg = await navigator.serviceWorker.getRegistration();
+          if (reg) await reg.update();
+        } catch {}
+      }
+      const hash = await hashText(await fetchDocument());
+      if (baseline == null) { baseline = hash; return; }
+      if (hash !== baseline) {
+        reloading = true;
+        try { location.replace(location.pathname + '?r=' + Date.now() + location.hash); }
+        catch { reloading = false; }
+      }
+    } catch {}
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') checkForUpdate();
+  });
+  window.addEventListener('pageshow', e => { if (e.persisted) checkForUpdate(); });
+  window.addEventListener('focus', () => checkForUpdate());
 })();

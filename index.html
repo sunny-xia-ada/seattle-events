@@ -3,56 +3,194 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-title" content="活动radar">
-<meta name="theme-color" content="#ffd6e5">
+<meta name="theme-color" content="#F3EAD8">
 <meta name="digest-version" content="v4-pink">
 <title>一丹的西雅图活动radar · 11/2–11/11</title><style>
-*{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif;background:#fffafb;color:#2e2438;font-size:17px;line-height:1.6}
-.wrap{max-width:640px;margin:0 auto;padding:28px 20px 60px}
-.hero{background:linear-gradient(120deg,#ffd6e5,#ffe2cc 50%,#e6dcff);border-radius:20px;padding:22px 20px;margin-bottom:16px}
-h1{font-size:26px;font-weight:600;margin:0;color:#3d2160}
-.sub{color:#6b5480;font-size:15px;margin:4px 0 0}
-.picks{background:#fff1e6;border-left:4px solid #f08a3c;border-radius:14px;padding:14px 16px;font-size:16px;color:#8a3f0a;margin-bottom:22px}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
-.chip{flex:none;border:0;background:#f6edf3;color:#5a4a63;border-radius:999px;padding:8px 16px;font-size:15px;cursor:pointer}
-.chip.on{background:#7b4fc9;color:#fff}
-details.more{margin:6px 0 20px}details.more summary{color:#7b4fc9;font-size:15px;cursor:pointer;list-style:none}
+:root{--paper:#f3ead8;--card:#fffaf0;--ink:#1d1a16;--mu:#6d6455;--ln:rgba(29,26,22,.16);--red:#d8312a;--ser:"Songti SC","Noto Serif CJK SC","STSong",Georgia,"Times New Roman",serif;--num:Georgia,"Times New Roman","Songti SC",serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--paper);overflow-x:hidden;scroll-behavior:smooth}
+body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--ink);background-color:var(--paper);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .1 0 0 0 .1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.55}
+button,input,select{font-family:inherit;color:inherit}
+.wrap{max-width:640px;margin:0 auto;padding:14px 14px 48px;padding-bottom:max(48px,env(safe-area-inset-bottom))}
+/* masthead */
+.mast{border-top:6px solid var(--ink);border-bottom:2px solid var(--ink);padding:8px 0 12px;margin-bottom:16px;position:relative}
+.mast:before{content:"";position:absolute;left:0;right:0;top:3px;height:1px;background:var(--ink)}
+.m1{display:flex;justify-content:space-between;margin-top:6px;font-size:10.5px;line-height:16px;font-weight:800;letter-spacing:.2em;color:var(--mu)}
+.mast h1{margin:6px 0 2px;font-size:78px;line-height:.92;font-weight:900;letter-spacing:-2px;display:flex;flex-direction:column}
+.mast h1 small{font-size:15px;line-height:20px;font-weight:800;letter-spacing:.14em;color:var(--ink);margin-bottom:6px}
+.mast h1 em{font-family:var(--num);font-style:italic;font-weight:700;font-size:46px;line-height:1;letter-spacing:-1px;color:var(--red);margin-top:2px}
+.m2{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;font-weight:800}
+.dr{font-size:14px;line-height:22px;background:var(--ink);color:var(--paper);padding:2px 12px;letter-spacing:.04em}
+.adm{font-size:10.5px;letter-spacing:.24em;color:var(--mu);font-weight:800}
+/* lineup poster */
+.picks{position:relative;background:var(--ink);color:var(--paper);padding:14px 16px 8px;margin-bottom:16px;box-shadow:4px 4px 0 var(--red)}
+.picks:before{content:"";position:absolute;inset:5px;border:1px solid rgba(243,234,216,.35);pointer-events:none}
+.pk1{text-align:center;font-size:10.5px;line-height:16px;letter-spacing:.3em;font-weight:800;color:#ffd23f}
+.picks h2{margin:2px 0 8px;text-align:center;font-size:25px;line-height:32px;font-weight:900;letter-spacing:.06em}
+.picks ul{list-style:none;margin:0;padding:0}
+.picks li{--c:#ff6b5a;display:flex;gap:10px;align-items:baseline;padding:7px 0;font-size:15px;line-height:21px;font-weight:700;border-top:1px solid rgba(243,234,216,.2)}
+.picks li.dance{--c:#ff7a6b}.picks li.ai{--c:#7fa2ff}.picks li.sea{--c:#ffc247}.picks li.con{--c:#53d6a0}
+.picks li b{flex:none;min-width:64px;font-size:12.5px;line-height:21px;font-weight:900;letter-spacing:.04em;color:var(--c);border-right:2px solid var(--c);padding-right:10px;text-align:right}
+.picks li span{min-width:0}
+/* tabs */
+.tabs{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink);margin-bottom:16px;background:var(--card)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 10px;font-size:15px;font-weight:800;letter-spacing:.04em;cursor:pointer;border:0;background:transparent;color:var(--ink);transition:background .2s,color .2s}
+.btn+.btn{border-left:2px solid var(--ink)}
+.btn.on{background:var(--ink);color:var(--paper)}
+.cn{display:inline-block;min-width:24px;text-align:center;font-size:12px;line-height:19px;font-weight:800;padding:0 6px;background:var(--ink);color:var(--paper);font-variant-numeric:tabular-nums}
+.btn.on .cn{background:var(--paper);color:var(--ink)}
+/* filter panel */
+.panel{background:var(--card);border:2px solid var(--ink);padding:14px 14px 14px;margin-bottom:16px;box-shadow:3px 3px 0 var(--ink)}
+.ph{display:flex;align-items:center;margin-bottom:10px;border-bottom:2px solid var(--ink);padding-bottom:6px}
+.ph h2{margin:0;font-size:20px;line-height:28px;font-weight:900;letter-spacing:.1em}
+.reset{margin-left:auto;background:none;border:0;color:var(--red);font-size:14.5px;font-weight:800;cursor:pointer;padding:8px 2px;text-decoration:underline;text-underline-offset:3px}
+.fl{font-size:10.5px;font-weight:800;letter-spacing:.24em;color:var(--mu);margin:0 0 8px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.pill{display:inline-flex;align-items:flex-start;gap:3px;min-height:40px;padding:8px 10px 6px 13px;font-size:15px;line-height:24px;font-weight:800;cursor:pointer;border:2px solid var(--c,var(--ink));background:var(--card);color:var(--c,var(--ink));border-radius:4px;transition:transform .12s,box-shadow .12s}
+.pill sup{font-size:10.5px;line-height:14px;font-weight:800;color:var(--mu);font-variant-numeric:tabular-nums}
+.pill:active,.dpill:active{transform:translate(1px,1px)}
+.pill.on{background:var(--c,var(--ink));color:var(--paper);box-shadow:3px 3px 0 var(--ink)}.pill.on sup{color:var(--paper);opacity:.85}
+.dstrip{display:flex;gap:8px;overflow-x:auto;margin:0 -14px 12px;padding:2px 14px 6px;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}.dstrip::-webkit-scrollbar{display:none}
+.dpill{flex:none;scroll-snap-align:start;width:56px;display:flex;flex-direction:column;align-items:center;padding:0 0 5px;cursor:pointer;border:2px solid var(--ink);background:var(--card);border-radius:4px;color:var(--ink);overflow:hidden;transition:transform .12s,box-shadow .12s}
+.dpill u{display:block;width:100%;text-decoration:none;text-align:center;background:var(--ink);color:var(--paper);font-size:11.5px;line-height:18px;font-weight:800;letter-spacing:.06em}
+.dpill b{font-family:var(--num);font-size:26px;line-height:30px;font-weight:700;margin-top:2px}
+.dpill i{font-style:normal;font-size:10.5px;line-height:13px;font-weight:700;color:var(--mu)}
+.dpill.on{box-shadow:3px 3px 0 var(--red);border-color:var(--red)}.dpill.on u{background:var(--red)}.dpill.on b{color:var(--red)}
+.dpill.z{opacity:.4}
+details.more{margin:2px 0 0}
+details.more summary{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 13px;font-size:13.5px;font-weight:800;letter-spacing:.04em;border:2px solid var(--ink);border-radius:4px;cursor:pointer;list-style:none;user-select:none}
 details.more summary::-webkit-details-marker{display:none}
-.panel{margin-top:12px;display:grid;gap:12px;font-size:15px;background:#fff;border-radius:14px;padding:16px;border:1px solid #eee}
-.panel input[type=search],.panel input[type=number],.panel select{font-size:15px;padding:8px 10px;border:1px solid #ddd;border-radius:10px;background:#fff;width:100%}
-.panel label{display:flex;align-items:center;gap:8px}
-.panel .r{display:flex;gap:10px}.panel .r>*{flex:1}
-.reset{border:0;background:none;color:#d6457f;font-size:15px;text-align:left;padding:0;cursor:pointer}
-.count{color:#8a9097;font-size:14px;margin:0 0 10px}
-.card{background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:12px;border:1px solid #f6e3ec;cursor:pointer}
-.l1{display:flex;align-items:baseline;gap:10px}
-.when{color:#7b4fc9;font-size:14px;font-weight:600;flex:none;min-width:84px;line-height:1.35}
-.title{font-weight:600;flex:1}
-.ic{font-size:12px;font-weight:700;width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none}
-.ic.ok{background:#e3f1e8;color:#2f7a4f}.ic.warn{background:#ffe3ee;color:#b0336a}
-.l2{display:flex;justify-content:space-between;align-items:center;color:#8a9097;font-size:14px;margin-top:4px;padding-left:94px}
-.badge{font-size:12px;padding:2px 10px;border-radius:999px;flex:none}
-.首选{background:#ffe7d6;color:#a34a0b}.推荐{background:#efe8fb;color:#5b3a99}.低优先{background:#f1f1ef;color:#888}.冲突{background:#ffe3ee;color:#b0336a}
-.det{display:none;margin-top:12px;padding-top:12px;border-top:1px solid #f0eee9;font-size:15px;color:#555}
-.card.open{border-color:#f4b6cf;box-shadow:0 2px 10px rgba(240,120,170,.12)}.card.open .det{display:block}.det p{margin:4px 0}
-.star{border:0;background:none;font-size:15px;color:#d6457f;padding:0;cursor:pointer;margin-top:6px}
-.src{font-size:12px;color:#aaa;word-break:break-all}.src a{color:#aaa}
-.empty{color:#aaa;text-align:center;padding:30px 0}
+details.more[open] summary{background:var(--ink);color:var(--paper)}details.more[open] summary .ch{transform:rotate(180deg)}.ch{display:inline-block;width:10px;transition:transform .2s}
+.mp{margin-top:12px;display:grid;gap:12px}
+.mp input[type=search],.mp input[type=number],.mp select{font-size:15px;font-weight:600;min-height:44px;padding:0 13px;border:2px solid var(--ink);border-radius:4px;background:#fff;width:100%;outline:0;appearance:none;-webkit-appearance:none}
+.mp select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 20px) 19px,calc(100% - 15px) 19px;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
+.mp input:focus,.mp select:focus{box-shadow:3px 3px 0 var(--red)}
+.mp .r{display:flex;gap:10px}.mp .r>*{flex:1;min-width:0}
+.mp .tg{display:flex;flex-wrap:wrap;gap:8px}
+.mp label{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 13px 0 10px;font-size:14px;font-weight:700;border:2px solid var(--ink);border-radius:4px;background:#fff;cursor:pointer}
+.mp input[type=checkbox]{width:17px;height:17px;margin:0;accent-color:var(--ink)}
+body #pushbar{margin:0 0 16px;padding:11px 13px;border:2px solid var(--ink);background:var(--card);font-size:13.5px;line-height:20px;font-weight:600;color:var(--mu)}
+body #pushbar button{font:inherit;font-size:13.5px;font-weight:800;padding:7px 14px;border:2px solid var(--ink);border-radius:4px;background:var(--ink);color:var(--paper);margin-right:8px;cursor:pointer}
+body #pushbar textarea{width:100%;height:70px;margin-top:8px;font-size:12px;border:2px solid var(--ink);padding:8px;background:#fff;color:var(--mu)}
+/* list */
+.count{display:inline-block;margin:0 0 2px;font-size:11px;line-height:20px;font-weight:800;letter-spacing:.2em;color:var(--mu)}
+.gh{display:flex;align-items:baseline;gap:9px;margin:20px 0 12px}
+.gh b{font-size:23px;line-height:28px;font-weight:900;letter-spacing:.04em}.gh span{font-family:var(--num);font-size:18px;line-height:28px;font-weight:700;font-style:italic;color:var(--red)}
+.gh i{flex:1;height:2px;background:var(--ink);align-self:center;min-width:12px}
+.gh em{font-style:normal;font-size:11.5px;line-height:19px;font-weight:800;letter-spacing:.1em;color:var(--mu)}
+.gh u{text-decoration:none;font-size:11.5px;line-height:19px;font-weight:800;background:var(--red);color:#fff;padding:0 7px;border-radius:2px}
+/* ticket */
+.card{--c:#6d6455;position:relative;margin-bottom:14px;background:var(--card);border:2px solid var(--ink);border-radius:10px;cursor:pointer;box-shadow:2px 3px 0 rgba(29,26,22,.22);scroll-margin-top:80px;transition:transform .12s,box-shadow .15s}
+.card:active{transform:translate(1px,1px)}
+.nt{position:absolute;left:62px;width:18px;height:11px;overflow:hidden;z-index:3;pointer-events:none}
+.nt:before{content:"";position:absolute;left:0;width:18px;height:18px;border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.nt.t{top:-2px}.nt.t:before{top:-9px}.nt.b{bottom:-2px}.nt.b:before{bottom:-9px}
+.tk{display:flex;align-items:stretch;position:relative}
+.stub{flex:none;width:72px;background:var(--c);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 0 10px;border-right:2px dashed rgba(29,26,22,.7);border-radius:8px 0 0 8px;text-align:center}
+.wd{font-size:12px;line-height:16px;font-weight:800;letter-spacing:.12em;min-height:16px}
+.dn{font-family:var(--num);font-size:38px;line-height:40px;font-weight:700;letter-spacing:-1px}
+.mo{font-size:11.5px;line-height:15px;font-weight:700;letter-spacing:.08em}
+.xx{margin-top:3px;font-size:10px;line-height:14px;font-weight:800;background:rgba(0,0,0,.28);padding:0 6px;border-radius:2px}
+.mn{flex:1;min-width:0;padding:10px 34px 11px 12px}
+.card.v-低优先 .stub{background:#857a66}.card.v-低优先{background:#faf4e6;box-shadow:none;border-color:rgba(29,26,22,.55)}
+.card.v-低优先 .title{color:var(--mu);font-weight:800}
+.card.v-首选{box-shadow:4px 4px 0 var(--ink)}
+.card.v-首选 .title{font-size:18.5px;line-height:25px}
+.card.v-首选 .stub{background:var(--c);box-shadow:inset -4px 0 0 rgba(0,0,0,.14)}
+.card.v-冲突 .stub{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.18) 0 6px,transparent 6px 12px)}
+.card.open{box-shadow:4px 4px 0 var(--c)}
+.c1{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;min-height:24px;padding-right:2px}
+.cat{font-size:11px;line-height:18px;font-weight:900;letter-spacing:.14em;color:var(--c)}
+.tm{font-size:13.5px;line-height:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.st{font-size:11.5px;line-height:18px;font-weight:800;padding:0 7px;border-radius:2px}
+.st.ok{background:#d8eddd;color:#1b6a3f}.st.warn{background:#fbe3a8;color:#85580a}
+.rt{margin-left:auto;display:flex;align-items:center;gap:7px}
+.bm{display:block;color:var(--c)}.bm svg{display:block;width:11px;height:14px}
+.badge{font-size:11.5px;line-height:18px;font-weight:800;letter-spacing:.06em;padding:0 8px;border-radius:2px;white-space:nowrap}
+.推荐{border:1.5px solid var(--c);color:var(--c)}
+.低优先{border:1.5px solid rgba(29,26,22,.3);color:var(--mu)}
+.冲突{background:#fbe3a8;color:#85580a;border:1.5px solid #a96800}
+.首选.stamp{position:absolute;top:8px;right:34px;z-index:2;font-size:15px;line-height:20px;font-weight:900;letter-spacing:.2em;padding:2px 3px 2px 8px;color:var(--c);border:3px double var(--c);border-radius:4px;transform:rotate(-7deg);opacity:.92;mix-blend-mode:multiply;background:transparent}
+.rt .首选.stamp{position:relative;top:auto;right:auto;margin:0 4px 0 0}
+.title{margin:5px 0 3px;font-size:17px;line-height:24px;font-weight:900;word-break:break-word}
+.meta{font-size:13.5px;line-height:20px;color:var(--mu);font-weight:600}.meta i{font-style:normal;margin:0 6px;opacity:.6}
+.chev{position:absolute;right:11px;bottom:11px;width:13px;height:13px;color:var(--ink);transition:transform .2s}
+.card.open .chev{transform:rotate(180deg)}
+.det{display:none;padding:12px 14px 14px;border-top:2px solid var(--ink);cursor:auto;background:linear-gradient(180deg,rgba(29,26,22,.04),transparent 40px)}
+.card.open .det{display:block;animation:dn .22s ease-out}
+@keyframes dn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.det dl{margin:0;display:grid;gap:7px}
+.det dl div{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:baseline}
+.det dt{font-size:11.5px;line-height:20px;font-weight:900;letter-spacing:.12em;color:var(--c)}
+.det dd{margin:0;font-size:14.5px;line-height:21px;font-weight:600;min-width:0;word-break:break-word}
+.fg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.desc{margin:11px 0 0;padding:2px 0 2px 12px;border-left:4px solid var(--c);font-family:var(--ser);font-size:15px;line-height:24px;font-weight:500}
+.act{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.star{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 13px;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:4px;font-size:14px;font-weight:800;cursor:pointer}
+.star svg{width:11px;height:14px;display:block}.star.on{background:var(--ink);color:var(--paper)}
+.src{font-size:12.5px;line-height:19px;color:var(--mu);word-break:break-all;margin:0;font-weight:600}.src a{color:var(--ink);font-weight:800;text-underline-offset:2px}
+.empty{text-align:center;padding:26px 0;color:var(--mu);font-weight:700;font-size:15px}
+.stamp.big{display:inline-block;font-size:26px;line-height:32px;font-weight:900;letter-spacing:.2em;padding:4px 6px 4px 14px;color:var(--red);border:4px double var(--red);border-radius:6px;transform:rotate(-8deg);margin-bottom:14px}
+.foot{border-top:6px solid var(--ink);margin-top:24px;padding-top:12px}.foot .src{font-size:12.5px;line-height:20px}
+/* deck */
+#dkw{display:none;margin-bottom:16px}.deckmode #dkw{display:block}.deckmode #list,.deckmode #cnt,.deckmode .picks{display:none}
+.stk{position:relative;padding:6px 8px 10px;overflow:hidden;margin:0 -8px;-webkit-user-select:none;user-select:none}
+.dk.card{margin:0 auto;width:calc(100% - 4px);touch-action:pan-y;cursor:grab;transition:transform .3s cubic-bezier(.22,.9,.3,1.05),opacity .25s;transform-origin:50% 100%;box-shadow:5px 5px 0 var(--ink)}
+.dk.drag{transition:none}
+.dk .stub{width:84px}.dk .dn{font-size:46px;line-height:48px}.dk .title{font-size:20px;line-height:27px;margin-top:8px}.dk .nt{left:74px}
+.dk .lv{font-size:13px;line-height:19px;font-weight:800;color:var(--c);margin-bottom:2px}.dk .desc{max-height:230px;overflow:auto}
+.dk.endc{background:var(--card);border:2px solid var(--ink);padding:26px 18px;text-align:center;box-shadow:5px 5px 0 var(--ink);display:flex;flex-direction:column;align-items:center;gap:10px;min-height:330px;justify-content:center;border-radius:10px;margin:0 auto;width:calc(100% - 4px)}
+.dk.endc h3{margin:0;font-size:22px}.dk.endc p{margin:0;color:var(--mu);font-size:14px;font-weight:600}
+.again{border:2px solid var(--ink);background:var(--ink);color:var(--paper);font-size:15px;font-weight:800;border-radius:4px;padding:11px 24px;cursor:pointer}
+.again.alt{background:var(--card);color:var(--ink)}
+.sctl{display:flex;align-items:center;justify-content:center;gap:26px;margin:8px 0 4px}
+.rb{width:58px;height:58px;border-radius:50%;border:2px solid var(--ink);background:var(--card);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.rb:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}.rb svg{width:24px;height:24px}.rb.lk svg{width:19px;height:22px}
+.rb.lk{background:var(--red);color:#fff}.rb:disabled{opacity:.35}
+.scn{min-width:64px;text-align:center;font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+.dkhint{text-align:center;font-size:12.5px;color:var(--mu);margin:2px 0 0;font-weight:600}
+/* motion: tickets slide in on filter change; stamp thumps once */
+#list.anim .card,#list.anim .gh{animation:rise .42s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*30ms)}
+@keyframes rise{from{opacity:0;transform:translateY(10px) rotate(-.6deg)}}
+#list.anim .首选.stamp{animation:thump .45s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--i,0)*30ms + .25s)}
+@keyframes thump{from{opacity:0;transform:rotate(-7deg) scale(1.9)}}
+body .card.hl{outline:3px solid var(--ink);outline-offset:3px;box-shadow:6px 6px 0 var(--red);animation:hl2 1s ease-in-out 3}
+@keyframes hl2{50%{outline-offset:7px}}
+@media(min-width:560px){.mast h1{font-size:96px}.mast h1 em{font-size:56px}}
+@media(max-width:360px){.mast h1{font-size:64px}.mast h1 em{font-size:40px}.stub{width:64px}.nt{left:54px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.card.open .nt.b,.dk .nt.b{display:none}
 </style></head><body><div class="wrap">
-<div class="hero"><h1>一丹的西雅图活动radar</h1><div class="sub">11/2 周一 – 11/11 周三</div></div>
-<div class="picks">⭐ 周二 AI Tinkerers（6–9 PM，需审核）· 周四 7:00 Tina's Power Jazz · 周六 5:00 Tina's Intermediate Choreography · 周日 4:30 Tina's Kpop《Tambourine》· 下周二 11/10 Coffee Dance《Canada Dry》（和 AI Agents Seattle 二选一）· 周四 SAM 免费日亡灵节 · 周六 Bellevue 排灯节 + Japan Fair 影片（Eastside，免费）· BOYNEXTDOOR 11/15 早点买票</div>
-<div class="chips" id="cats"></div><div class="chips" id="days"></div>
-<details class="more"><summary>更多筛选 ▾</summary><div class="panel">
+<header class="mast"><div class="m1"><span>EVENT RADAR</span><span>SEATTLE / EASTSIDE</span></div>
+<h1><small>一丹的西雅图</small>活动<em>radar</em></h1>
+<div class="m2"><span class="dr">11/2 周一 – 11/11 周三</span><span class="adm">ADMIT ONE</span></div></header>
+<section class="picks"><div class="pk1"><span>THIS WEEK'S LINEUP</span></div><h2>★ 本期首选</h2><ul>
+<li class="ai"><b>周二</b><span>AI Tinkerers（6–9 PM，需审核）</span></li>
+<li class="dance"><b>周四</b><span>7:00 Tina's Power Jazz</span></li>
+<li class="dance"><b>周六</b><span>5:00 Tina's Intermediate Choreography</span></li>
+<li class="dance"><b>周日</b><span>4:30 Tina's Kpop《Tambourine》</span></li>
+<li class="dance"><b>下周二 11/10</b><span>Coffee Dance《Canada Dry》（和 AI Agents Seattle 二选一）</span></li>
+<li class="sea"><b>周四</b><span>SAM 免费日亡灵节</span></li>
+<li class="sea"><b>周六</b><span>Bellevue 排灯节 + Japan Fair 影片（Eastside，免费）</span></li>
+<li class="con"><b>BOYNEXTDOOR</b><span>11/15 早点买票</span></li>
+</ul></section>
+<div class="tabs"><button class="btn on" id="tabl" type="button">全部活动 <span class="cn" id="tlc"></span></button><button class="btn" id="tabd" type="button">翻卡看首选 <span class="cn" id="tdc"></span></button></div>
+<div id="dkw"><div class="stk" id="dks"></div><div class="sctl"><button class="rb" id="dkx" type="button" aria-label="跳过"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"><path d="M6 6l12 12M18 6 6 18"/></svg></button><div class="scn" id="dkn"></div><button class="rb lk" id="dkl" type="button" aria-label="收藏"><svg viewBox="0 0 14 18" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 2h10v14l-5-3.6L2 16z"/></svg></button></div><p class="dkhint">左右滑动，或点 ✕ / 书签；收藏的活动在「只看收藏」里</p></div>
+<section class="panel"><div class="ph"><h2>筛选</h2><button class="reset" id="rs" type="button">重置全部</button></div>
+<div class="fl">类型</div><div class="pills" id="cats"></div>
+<div class="fl">日期</div><div class="dstrip" id="days"></div>
+<details class="more"><summary>更多筛选 <svg class="ch" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6 6l4.5-4.5"/></svg></summary><div class="mp">
 <input type="search" id="q" placeholder="搜索歌名、老师、地点">
 <div class="r"><select id="area"><option value="">所有区域</option><option>Eastside</option><option>Seattle</option></select>
 <select id="sort"><option value="time">按时间</option><option value="rank">按优先级</option></select></div>
 <input type="number" id="mp" min="0" placeholder="最高价格 $（不限）">
-<label><input type="checkbox" id="hc">隐藏冲突</label>
+<div class="tg"><label><input type="checkbox" id="hc">隐藏冲突</label>
 <label><input type="checkbox" id="fo">只看收藏</label>
-<label><input type="checkbox" id="sk">显示「可以略过」</label>
-<button class="reset" id="rs">重置全部</button></div></details>
+<label><input type="checkbox" id="sk">显示「可以略过」</label></div></div></details>
+</section>
 <div class="count" id="cnt"></div><div id="list"></div>
-<p class="src" style="margin-top:24px">「!」= 时间待核实或与日程冲突 · 已查 Outlook 日历：「✓」= 日历里已有（已订）；冲突 = 和日历事件，或 Tina's 固定课（周四 7:00、周五 6:00、周六 5:00）撞时间 · 本页 11/2（周一）刷新，覆盖周一到下周三（10 天）；舞蹈课时间和位子以各工作室官网为准</p>
+<footer class="foot"><p class="src">「!」= 时间待核实或与日程冲突 · 已查 Outlook 日历：「✓」= 日历里已有（已订）；冲突 = 和日历事件，或 Tina's 固定课（周四 7:00、周五 6:00、周六 5:00）撞时间 · 本页 11/2（周一）刷新，覆盖周一到下周三（10 天）；舞蹈课时间和位子以各工作室官网为准</p>
+</footer>
 </div><script>
 const DAYS=["周一","周二","周三","周四","周五","周六","周日","周一","周二","周三"],SD=["一","二","三","四","五","六","日","一","二","三"],DATES=["11/2","11/3","11/4","11/5","11/6","11/7","11/8","11/9","11/10","11/11"];
 const RANK={首选:0,推荐:1,低优先:2,冲突:3};
@@ -64,7 +202,7 @@ const DATA=[
 {"id":"cd-thu-hearts","cat":"舞蹈课","title":"K-pop: Iconic Heart-Hearts2hearts（Coffee Dance）","days":[3],"start":"19:10","time":"7:10–8:40 PM","place":"Coffee Dance，Bellevue","area":"Eastside","price":23,"priceText":"$23","level":"Level 1–2、Chorus｜Isha","verdict":"低优先","clash":true,"desc":"女团歌，Level 1–2，对你偏简单。和你周四 7:00 的 Tina's Jazz 固定课完全重叠。","src":"https://www.coffeedance.org/book-online"},
 {"id":"cd-fri-hush","cat":"舞蹈课","title":"K-pop: Hush-XLOV（Coffee Dance）","days":[4],"start":"19:30","time":"7:30–9:00 PM","place":"Coffee Dance，Bellevue","area":"Eastside","price":23,"priceText":"$23","level":"Level 1–2、Chorus｜Taylor","verdict":"低优先","clash":true,"desc":"女团歌，Level 1–2，对你偏简单。Tina's 周五 6:00 的课 7:30 才下课，两地之间赶不过去，算冲突。","src":"https://www.coffeedance.org/book-online"},
 {"id":"tina-sun-kpop","cat":"舞蹈课","title":"Kpop - Tambourine by Eve（Tina's）","days":[6],"start":"16:30","time":"4:30–6:00 PM","place":"Tina's Dance Studios，655 156th Ave SE, Bellevue","area":"Eastside","price":null,"priceText":"价格页面没写，常规用课卡","level":"级别未注明｜Zonya","verdict":"首选","desc":"这几天 Tina's 唯一一节 K-pop，在 Eastside，周日下午没有冲突。官网只写了课名，级别没标，歌曲和风格也没写，订之前最好先问一下。上周的 Kpop - Sunkiss 这周没有。","src":"https://www.tinasdancestudios.com/booking-calendar/kpop-tambourine-by-eve"},
-{"id":"tina-guofeng","cat":"舞蹈课","title":"国风爵士（Tina's）","days":[8],"start":"18:30","time":"6:30–8:00 PM","place":"Tina's Dance Studios，Bellevue","area":"Eastside","price":null,"priceText":"价格页面没写，常规用课卡","level":"JAZZ｜Akai","verdict":"推荐","desc":"中国风爵士，Tina's 新出现的课，级别没标，不是 K-pop 路线。和同晚 Coffee Dance 的 Jazz Funk 时间重叠。","src":"https://www.tinasdancestudios.com/booking-calendar/国风爵士"},
+{"id":"tina-guofeng","cat":"舞蹈课","title":"国风爵士（Tina's）","days":[8],"start":"18:30","time":"6:30–8:00 PM","place":"Tina's Dance Studios，Bellevue","area":"Eastside","price":null,"priceText":"价格页面没写，常规用课卡","level":"JAZZ｜Akai","verdict":"低优先","desc":"中国风爵士，Tina's 新出现的课，级别没标，不是 K-pop 路线。和同晚 7:10 Coffee Dance 的《Canada Dry》时间重叠，你已经定了去 Canada Dry，这节略过。","src":"https://www.tinasdancestudios.com/booking-calendar/国风爵士"},
 {"id":"cd-tue10-canada","cat":"舞蹈课","title":"Jazz Funk: Canada Dry-Troye Sivan（Coffee Dance）","days":[8],"start":"19:10","time":"7:10–8:40 PM","place":"Coffee Dance，Bellevue","area":"Eastside","price":23,"priceText":"$23","level":"Level 1–2｜Jennie","verdict":"首选","desc":"Troye Sivan 的《Canada Dry》，男歌手 solo、groove 路线，Eastside。级别写 Level 1–2，对你偏轻松，当作练质感。和同晚 5:00–8:00 的 AI Agents Seattle 时间有重叠，二选一。","src":"https://www.coffeedance.org/book-online"},
 {"id":"tina-thu","cat":"舞蹈课","title":"Intermediate Power Jazz（Tina's 固定课）","days":[3],"start":"19:00","time":"7:00–8:30 PM","place":"Tina's Dance Studios，Bellevue","area":"Eastside","price":null,"priceText":"价格页面没写，常规用课卡","level":"JAZZ｜Ella","verdict":"首选","desc":"你的周四 7:00 Jazz 固定课，课表上本周叫 Intermediate Power Jazz。Outlook 日历里还没有这节，可能还没报名，所以不标「已订」。和同晚 Coffee Dance 的课时间重叠。","src":"https://app.tinasdancestudios.com/schedule"},
 {"id":"tina-fri","cat":"舞蹈课","title":"Old School Hiphop - Beginner Plus（Tina's 固定课）","days":[4],"start":"18:00","time":"6:00–7:30 PM","place":"Tina's Dance Studios，Bellevue","area":"Eastside","price":null,"priceText":"价格页面没写，常规用课卡","level":"HIPHOP｜Akai","verdict":"推荐","desc":"课表上周五 6:00 只有这一节，应该就是你的固定课，Beginner Plus 级别。Outlook 日历里还没有 11/6 这节，可能还没报名。同晚 Coffee Dance 的课和它撞。","src":"https://app.tinasdancestudios.com/schedule"},
@@ -87,38 +225,100 @@ const DATA=[
 {"id":"jfair","cat":"当季活动","title":"Japan Fair Heritage Program 影片放映与交流会","days":[5],"start":"15:00","time":"3:00–5:00 PM","place":"Bellevue Children's Academy，14640 NE 24th St, Bellevue","area":"Eastside","price":0,"priceText":"免费（停车也免费），需填表报名","level":"—","verdict":"推荐","clash":true,"desc":"放映日裔移民历史的圆桌讨论影片，之后有交流和问答。Eastside、免费，日本文化爱好者对口。放映到 5:00，而 Tina's 周六 5:00 开课（开车约 10 分钟），只能早走或晚到。","src":"https://napost.com/event/heritage-program-film-viewing-reception/"},
 {"id":"sumo","cat":"当季活动","title":"Sumo + Sushi（Konishiki 主持）","days":[],"dateText":"11/20–22、11/28","time":"开场时间页面没写，门开在演出前 1 小时","place":"Meydenbauer Center，11100 NE 6th St, Bellevue","area":"Eastside","price":null,"priceText":"页面没写价格，分 Viewing Only / Sushi+Show / Front Row / Sky Suite 几档","level":"周五、周六 21+，周日全年龄","verdict":"推荐","desc":"相扑表演加寿司便当和文化讲解，Eastside 的日本文化活动。官网写已售出 70%，想去要尽早决定。时间在本期之外，先预告。","src":"https://www.sumoandsushi.com/seattle"},
 {"id":"bnd","cat":"K-pop 演唱会","title":"BOYNEXTDOOR〔KNOCK ON Vol. 2〕","days":[],"dateText":"11/15 周日","time":"7:30 PM（6:30 开门）","place":"Showbox SoDo，1700 1st Ave S, Seattle","area":"Seattle","price":null,"priceText":"票价未注明（另加手续费）","level":"全年龄，21+ 才能喝酒","verdict":"推荐","desc":"ZICO 公司 KOZ 的男团，第一次世界巡演，场地小、离舞台近。官网写 11/15 周日，6:30 开门。时间在本期之外，早点买票。","src":"https://www.showboxpresents.com/events/detail/1477898"},
-{"id":"katseye","cat":"K-pop 演唱会","title":"KATSEYE〔WILDWORLD TOUR〕","days":[],"dateText":"11/17 周二","time":"8:00 PM","place":"Climate Pledge Arena，Seattle Center","area":"Seattle","price":null,"priceText":"票价未注明","level":"—","verdict":"低优先","desc":"全球女团的 arena 巡演，严格说不算韩团，但走 K-pop 训练体系，看个人喜好。时间在本期之外。","src":"https://www.seattlecenter.com/events/event-calendar/katseye-wildworld-tour"}
+{"id":"katseye","cat":"K-pop 演唱会","title":"KATSEYE〔WILDWORLD TOUR〕","days":[],"dateText":"11/17 周二","time":"8:00 PM","place":"Climate Pledge Arena，Seattle Center","area":"Seattle","price":null,"priceText":"票价未注明","level":"—","verdict":"低优先","desc":"全球女团的 arena 巡演，严格说不算韩团，但走 K-pop 训练体系，看个人喜好。时间在本期之外。","src":"https://www.seattlecenter.com/events/event-calendar/katseye-wildworld-tour"},
+{"id":"pr-ws-justus","cat":"舞蹈课","title":"Doja Cat Night! “Just Us”（PopRox 大师课）","days":[5],"start":"19:30","time":"7:30–9:00 PM","place":"PopRox Dance Studio Capitol Hill，1429 12th Ave, Seattle（Studio Biggie）","area":"Seattle","price":33,"priceText":"$33 或 1.5 个课时（credit）","level":"Intermediate｜Jazz Funk｜May Qiang｜16+","verdict":"推荐","desc":"PopRox 周六晚的 Doja Cat 主题 Jazz Funk 工作坊，Intermediate 级别，歌是 Jack Harlow 和 Doja Cat 的《Just Us》，老师 May Qiang。是 groove 路线、有难度，但不是 K-pop。时间上 Tina's 周六 5:00–6:30 在 Bellevue 下课，到 Capitol Hill 要开车约 20–30 分钟，7:30 开课比较紧，要去的话下课就得直接走。","src":"https://momence.com/l/R5hgVnqJ"},
+{"id":"pr-ws-delmar","cat":"舞蹈课","title":"Doja Cat Night! “Del Mar”（PopRox 大师课）","days":[5],"start":"18:00","time":"6:00–7:30 PM","place":"PopRox Dance Studio Capitol Hill，1429 12th Ave, Seattle（Studio Biggie）","area":"Seattle","price":33,"priceText":"$33 或 1.5 个课时（credit）","level":"Beginner｜Jazz Funk｜May Qiang｜16+","verdict":"低优先","clash":true,"desc":"同一晚的 Beginner 场，歌是 Ozuna、Doja Cat 的《Del Mar》，对你偏简单。而且 6:00 开课，和 Tina's 周六 5:00–6:30 的固定课完全重叠，Bellevue 过去也赶不上，所以不推荐。","src":"https://momence.com/l/K1hwLx7B"},
+{"id":"pr-ws-vogue","cat":"舞蹈课","title":"Vogue Femme Foundations（PopRox 大师课）","days":[6],"start":"17:00","time":"5:00–7:00 PM","place":"PopRox Dance Studio Capitol Hill，1429 12th Ave, Seattle（Studio Biggie）","area":"Seattle","price":44,"priceText":"$44 或 2 个课时（credit）","level":"Intro + Beginner｜Vogue Femme｜Hiero Saunders｜16+","verdict":"低优先","desc":"老师 Hiero Saunders 带的 Vogue Femme 入门工作坊（hands、catwalk、duckwalk、spins & dips、floorwork），是他们月底要开的每周 Vogue Femme 课的预热。风格不是 K-pop 或 groove，建议带护膝。周日下午和 Tina's 固定课不冲突，想试新风格可以去。","src":"https://momence.com/l/QQhE0gAb"},
+{"id":"pr-ws-line","cat":"舞蹈课","title":"Line Dancing Classics Night!（PopRox 大师课）","days":[6],"start":"19:00","time":"7:00–8:30 PM","place":"PopRox Dance Studio Capitol Hill，1429 12th Ave, Seattle（Studio Biggie）","area":"Seattle","price":33,"priceText":"$33 或 1.5 个课时（credit）","level":"Beginner｜Line Dance｜Nat Robine｜16+","verdict":"低优先","desc":"老师 Nat Robine 教《Cotton Eye Joe》《Footloose》《Cowboy Hustle》这类经典排舞，16–64 拍的循环，轻松好玩。偏休闲，和你的 K-pop／groove 路线不太搭；周日晚和 Tina's 固定课不冲突。","src":"https://momence.com/l/Oeh8k02J"},
+{"id":"pr-ws-chanel","cat":"舞蹈课","title":"Tyla Night! “Chanel”（PopRox 大师课）","days":[],"dateText":"11/14 周六","time":"7:30–9:00 PM","place":"PopRox Dance Studio Capitol Hill，1429 12th Ave, Seattle（Studio Biggie）","area":"Seattle","price":33,"priceText":"$33 或 1.5 个课时（credit）","level":"Intermediate + Advanced｜Dance After Dark / Jazz Funk｜Hiero Saunders｜16+","verdict":"推荐","desc":"下周六 11/14 的 Tyla 主题工作坊，Int + Adv 级别，Dance After Dark 和 Jazz Funk 混合，老师 Hiero Saunders。6:00 那场《That Girl》是 Beginner。7:30 开课，和 Tina's 周六 5:00–6:30 是同一个紧凑的衔接问题。","src":"https://momence.com/l/WQh9GQbx"},
+{"id":"pr-ws-circus","cat":"舞蹈课","title":"Britney Spears Night! “Circus”（PopRox 大师课）","days":[],"dateText":"11/15 周日","time":"5:00–6:30 PM","place":"PopRox Dance Studio Capitol Hill，1429 12th Ave, Seattle（Studio Biggie）","area":"Seattle","price":33,"priceText":"$33 或 1.5 个课时（credit）","level":"Intermediate + Advanced｜Jazz Funk｜Friday James｜16+","verdict":"推荐","desc":"11/15 周日的 Britney《Circus》Jazz Funk 工作坊，Int + Adv 级别，老师 Friday James，周日下午和 Tina's 固定课不冲突。同一天 6:30 还有 Friday 带的 Tate McRae《it's ok, i'm ok》Intermediate 场（$33），可以连着上。","src":"https://momence.com/l/jJhJAb8L"},
+{"id":"pr-ws-2on","cat":"舞蹈课","title":"Tinashe Night! “2 On”（PopRox 大师课）","days":[],"dateText":"11/28 周六","time":"6:00–8:00 PM","place":"PopRox Dance Studio Capitol Hill，1429 12th Ave, Seattle（Studio Biggie）","area":"Seattle","price":44,"priceText":"$44 或 2 个课时（credit）","level":"Intermediate + Advanced｜Commercial / Jazz Funk｜Friday James｜16+","verdict":"推荐","clash":true,"desc":"11/28 周六的 Tinashe《2 On》工作坊，2 小时，Int + Adv，商业／Jazz Funk 风格，老师 Friday James。和 Tina's 周六 5:00–6:30 的固定课在时间上重叠，要去就得和那节二选一。","src":"https://momence.com/l/ALhm9jE2"},
+{"id":"pr-prog-fire","cat":"舞蹈课","title":"K-Pop Series “FIRE” - BTS（PopRox Program）","days":[],"dateText":"1/7 周四起（明年）","time":"每周四 8:30–9:30 PM，共 4 周（1/7、1/14、1/21、1/28）","place":"PopRox Dance Studio Capitol Hill，1429 12th Ave, Seattle（Studio Biggie）","area":"Seattle","price":120,"priceText":"$120（4 周）","level":"Beginner + Intermediate｜K-Pop｜Daniel (Dragon)｜16–80","verdict":"推荐","clash":true,"desc":"老师 Daniel (Dragon) 带的 4 周 BTS《Fire》全曲编舞班（Keone Madrid 和 Vinh Nguyen 编舞），只学动作、不排队形、不拍成品视频。现在已经能报名，但开课在明年 1 月，不在本期。周四 8:30 在 Capitol Hill，你周四 7:00 的 Tina's 课下课后赶不过去。同系列的《ON》已经停售。","src":"https://momence.com/l/wyhwX2an"}
 ];
 let S={cat:"",day:null,q:"",area:"",sort:"time",mp:"",hc:false,fo:false,sk:false};
 let favs=new Set(JSON.parse(localStorage.getItem("sdFavs")||"[]")),open=new Set();
 const p=new URLSearchParams(decodeURIComponent(location.hash.slice(1)));if(p.get("cat"))S.cat=p.get("cat");if(p.get("day"))S.day=+p.get("day");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function chips(){cats.innerHTML=CATS.map(([v,l])=>`<button class="chip ${S.cat===v?"on":""}" data-cat="${v}">${l}</button>`).join("");
- days.innerHTML=`<button class="chip ${S.day===null?"on":""}" data-day="">全部</button>`+SD.map((d,i)=>`<button class="chip ${S.day===i?"on":""}" data-day="${i}">${d} ${DATES[i]}</button>`).join("")}
-function ok(d){if(d.cat==="可以略过"?!(S.sk||S.cat==="可以略过"):false)return false;
- if(S.cat&&d.cat!==S.cat)return false;if(S.day!==null&&!d.days.includes(S.day))return false;
- if(S.area&&d.area!==S.area)return false;if(S.hc&&(d.clash||d.verdict==="冲突"))return false;if(S.fo&&!favs.has(d.id))return false;
- if(S.mp!==""&&(d.price===null||d.price>+S.mp))return false;
- if(S.q&&![d.title,d.place,d.level,d.desc].join(" ").toLowerCase().includes(S.q.toLowerCase()))return false;return true}
+/* ---- UI-only helpers ---- */
+const t12=s=>{if(!s)return"";const h=+s.slice(0,2);return(h%12||12)+":"+s.slice(3)+(h>=12?" PM":" AM")};
+const catName=c=>{const r=CATS.find(x=>x[0]===c);return r?r[1]:c};
+const shown=d=>d.cat!=="可以略过";
+function ok(d,s){s=s||S;if(d.cat==="可以略过"?!(s.sk||s.cat==="可以略过"):false)return false;
+ if(s.cat&&d.cat!==s.cat)return false;if(s.day!==null&&!d.days.includes(s.day))return false;
+ if(s.area&&d.area!==s.area)return false;if(s.hc&&(d.clash||d.verdict==="冲突"))return false;if(s.fo&&!favs.has(d.id))return false;
+ if(s.mp!==""&&(d.price===null||d.price>+s.mp))return false;
+ if(s.q&&![d.title,d.place,d.level,d.desc].join(" ").toLowerCase().includes(s.q.toLowerCase()))return false;return true}
+const nWith=o=>DATA.filter(d=>ok(d,Object.assign({},S,o))).length;
 const fd=d=>S.day!==null?S.day:(d.days.length?d.days[0]:9);
-function when(d){if(!d.days.length)return d.dateText||"时间未注明";const i=(S.day!==null&&d.days.includes(S.day))?S.day:d.days[0];const t=d.start?((+d.start.slice(0,2)%12||12)+":"+d.start.slice(3)):"";return "周"+SD[i]+" "+DATES[i]+(d.days.length>1?" +"+(d.days.length-1):"")+(t?"<br>"+t:"")}
-function card(d){const ic=d.booked?'<span class="ic ok" title="已订">✓</span>':(d.clash||d.verify)?`<span class="ic warn" title="${d.clash?"与日程冲突":"时间待核实"}">!</span>`:"";
- return `<div class="card ${open.has(d.id)?"open":""}" data-id="${d.id}"><div class="l1"><span class="when">${when(d)}</span><span class="title">${esc(d.title)}</span>${ic}</div>
-<div class="l2"><span>${esc(d.place.split("，")[0])} · ${esc(d.priceText.split("，")[0])}</span><span class="badge ${d.verdict}">${d.verdict}</span></div>
-<div class="det"><p>${d.days.map(i=>DAYS[i]+" "+DATES[i]).join("、")||d.dateText||"时间未注明"}${d.time?" · "+esc(d.time):""}</p><p>${esc(d.place)}</p><p>${esc(d.priceText)}${d.level!=="—"?" · "+esc(d.level):""}</p>
-${d.booked?"<p>✓ 已订</p>":""}${d.clash?"<p>! 与日程冲突</p>":""}${d.verify?"<p>! 时间待核实</p>":""}<p>${esc(d.desc)}</p>
-<button class="star" data-star="${d.id}">${favs.has(d.id)?"★ 已收藏":"☆ 收藏"}</button><p class="src">来源：<a href="${d.src}" target="_blank" rel="noopener">${esc(d.src.replace(/^https?:\/\//,"").slice(0,44))}</a></p></div></div>`}
-function render(){chips();const it=DATA.filter(ok);
+const whenIdx=d=>S.day!==null&&d.days.includes(S.day)?S.day:d.days[0];
+function dateText(d){if(!d.days.length)return d.dateText||"时间未注明";const i=whenIdx(d);return "周"+SD[i]+" "+DATES[i]}
+function timeText(d){return d.start?t12(d.start):((d.time||"").length<=16?d.time:"")}
+const flagsHtml=(d,long)=>(d.booked?'<span class="st ok">✓ 已订</span>':"")+(d.clash?`<span class="st warn">! ${long?"与日程冲突":"冲突"}</span>`:"")+(d.verify?`<span class="st warn">! ${long?"时间待核实":"待核实"}</span>`:"");
+function detHtml(d){const f=favs.has(d.id),fl=flagsHtml(d,true);
+ return `<div class="det"><dl><div><dt>时间</dt><dd>${d.days.map(i=>DAYS[i]+" "+DATES[i]).join("、")||d.dateText||"时间未注明"}${d.time?" · "+esc(d.time):""}</dd></div><div><dt>地点</dt><dd>${esc(d.place)}</dd></div><div><dt>价格</dt><dd>${esc(d.priceText)}</dd></div>${d.level!=="—"?`<div><dt>级别</dt><dd>${esc(d.level)}</dd></div>`:""}</dl>
+${fl?`<div class="fg">${fl}</div>`:""}<p class="desc">${esc(d.desc)}</p>
+<div class="act"><button class="star ${f?"on":""}" data-star="${d.id}">${f?BMF+"已收藏":BMO+"收藏"}</button><p class="src">来源：<a href="${d.src}" target="_blank" rel="noopener">${esc(d.src.replace(/^https?:\/\//,"").slice(0,44))}</a></p></div></div>`}
+function groups(it){const rank=S.sort==="rank",g=[];
+ it.forEach(d=>{const k=rank?d.verdict:fd(d);let x=g[g.length-1];if(!x||x.k!==k){x={k,items:[]};g.push(x)}x.items.push(d)});let i=0;
+ return g.map(x=>{const top=x.items.filter(d=>d.verdict==="首选").length;
+  return gh(x,rank,top)+x.items.map(d=>card(d,rank,i++)).join("")}).join("")}
+/* ---- swipe deck (optional 翻卡 mode; the list stays the default) ---- */
+let dm=false,dk=0,dsig="";
+const pool=()=>DATA.filter(d=>ok(d)).filter(d=>d.verdict==="首选"||d.verdict==="推荐").sort((a,b)=>RANK[a.verdict]-RANK[b.verdict]||fd(a)-fd(b)||(a.start||"").localeCompare(b.start||""));
+function dkRender(P){const sig=P.map(x=>x.id).join();if(sig!==dsig){dsig=sig;dk=0}if(dk>P.length)dk=P.length;
+ const d=P[dk];dkx.disabled=dkl.disabled=!d;dkn.textContent=P.length?Math.min(dk+1,P.length)+" / "+P.length:"0 / 0";
+ dks.innerHTML=d?deckCard(d):endCard(P);if(d)swipe()}
+function dkGo(like){const P=pool(),d=P[dk];if(!d)return;if(like){favs.add(d.id);localStorage.setItem("sdFavs",JSON.stringify([...favs]))}
+ const c=document.getElementById("dkc");if(c){c.style.transform=`translateX(${like?"":"-"}120%) rotate(${like?10:-10}deg)`;c.style.opacity=0}
+ setTimeout(()=>{dk++;render()},230)}
+function swipe(){const c=document.getElementById("dkc");if(!c)return;let x0=null,y0=0,dx=0;
+ c.addEventListener("touchstart",e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY;dx=0;c.classList.add("drag")},{passive:true});
+ c.addEventListener("touchmove",e=>{if(x0===null)return;dx=e.touches[0].clientX-x0;if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(e.touches[0].clientY-y0)){c.style.transform=`translateX(${dx}px) rotate(${dx/22}deg)`}},{passive:true});
+ c.addEventListener("touchend",()=>{if(x0===null)return;c.classList.remove("drag");x0=null;if(Math.abs(dx)>90)dkGo(dx>0);else c.style.transform=""})}
+/* ---- render ---- */
+function render(anim){chips();const it=DATA.filter(d=>ok(d));
  it.sort(S.sort==="rank"?(a,b)=>RANK[a.verdict]-RANK[b.verdict]||fd(a)-fd(b):(a,b)=>fd(a)-fd(b)||(a.start||"").localeCompare(b.start||""));
- cnt.textContent=`${it.length} 项`;
- list.innerHTML=it.length?it.map(card).join(""):`<div class="empty">${S.cat==="K-pop 演唱会"?"本周暂无演唱会":"没有符合条件的活动"}</div>`}
-cats.onclick=e=>{const b=e.target.closest("[data-cat]");if(b){S.cat=b.dataset.cat;render()}};
-days.onclick=e=>{const b=e.target.closest("[data-day]");if(b){S.day=b.dataset.day===""?null:+b.dataset.day;render()}};
-q.oninput=()=>{S.q=q.value;render()};mp.oninput=()=>{S.mp=mp.value;render()};area.onchange=()=>{S.area=area.value;render()};sort.onchange=()=>{S.sort=sort.value;render()};
-hc.onchange=()=>{S.hc=hc.checked;render()};fo.onchange=()=>{S.fo=fo.checked;render()};sk.onchange=()=>{S.sk=sk.checked;render()};
-rs.onclick=()=>{S={cat:"",day:null,q:"",area:"",sort:"time",mp:"",hc:false,fo:false,sk:false};q.value=mp.value=area.value="";sort.value="time";hc.checked=fo.checked=sk.checked=false;render()};
+ cnt.textContent=`${it.length} 项`;tlc.textContent=it.length;const P=pool();tdc.textContent=P.length;
+ tabl.classList.toggle("on",!dm);tabd.classList.toggle("on",dm);document.body.classList.toggle("deckmode",dm);
+ list.classList.toggle("anim",!!anim);
+ list.innerHTML=it.length?groups(it):emptyHtml();
+ if(dm)dkRender(P);if(typeof after==="function")after(it,P)}
+cats.onclick=e=>{const b=e.target.closest("[data-cat]");if(b){S.cat=b.dataset.cat;render(1)}};
+days.onclick=e=>{const b=e.target.closest("[data-day]");if(b){S.day=b.dataset.day===""?null:+b.dataset.day;render(1)}};
+q.oninput=()=>{S.q=q.value;render()};mp.oninput=()=>{S.mp=mp.value;render()};area.onchange=()=>{S.area=area.value;render(1)};sort.onchange=()=>{S.sort=sort.value;render(1)};
+hc.onchange=()=>{S.hc=hc.checked;render(1)};fo.onchange=()=>{S.fo=fo.checked;render(1)};sk.onchange=()=>{S.sk=sk.checked;render(1)};
+rs.onclick=()=>{S={cat:"",day:null,q:"",area:"",sort:"time",mp:"",hc:false,fo:false,sk:false};dm=false;q.value=mp.value=area.value="";sort.value="time";hc.checked=fo.checked=sk.checked=false;render(1)};
+tabl.onclick=()=>{dm=false;render(1)};tabd.onclick=()=>{dm=true;dk=0;dsig="";render()};
+dkx.onclick=()=>dkGo(false);dkl.onclick=()=>dkGo(true);
+dkw.onclick=e=>{const b=e.target.closest("[data-dk]");if(!b)return;if(b.dataset.dk==="again"){dk=0;render()}else{S.fo=true;fo.checked=true;dm=false;render(1);scrollTo(0,0)}};
 list.onclick=e=>{if(e.target.closest("a"))return;const s=e.target.closest("[data-star]");
  if(s){const id=s.dataset.star;favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("sdFavs",JSON.stringify([...favs]));render();return}
+ if(e.target.closest(".det")&&!e.target.closest(".desc,dl"))return;
  const c=e.target.closest(".card");if(c){const id=c.dataset.id;open.has(id)?open.delete(id):open.add(id);c.classList.toggle("open")}};
-render();
+/* ===== Design B: ticket stub / gig poster ===== */
+const CCOL={"舞蹈课":"#d8312a","AI 活动":"#1f4fd1","当季活动":"#a96800","K-pop 演唱会":"#0f8a5f"};
+const colr=d=>CCOL[d.cat]||"#6d6455";
+const BMO='<svg viewBox="0 0 14 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 2h10v14l-5-3.6L2 16z"/></svg>';
+const BMF='<svg viewBox="0 0 14 18" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 2h10v14l-5-3.6L2 16z"/></svg>';
+const CHEV='<svg class="chev" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6 6l4.5-4.5"/></svg>';
+function chips(){cats.innerHTML=CATS.map(([v,l])=>`<button class="pill ${S.cat===v?"on":""}" style="--c:${CCOL[v]||"#1d1a16"}" data-cat="${v}">${l}<sup>${nWith({cat:v})}</sup></button>`).join("");
+ days.innerHTML=`<button class="dpill all ${S.day===null?"on":""}" data-day=""><u>全部</u><b>10</b><i>${nWith({day:null})} 场</i></button>`+SD.map((d,i)=>{const n=nWith({day:i});return `<button class="dpill ${S.day===i?"on":""} ${n?"":"z"}" data-day="${i}"><u>周${d}</u><b>${DATES[i].split("/")[1]}</b><i>${n} 场</i></button>`}).join("")}
+function stubParts(d){if(d.days.length){const i=whenIdx(d),a=DATES[i].split("/");return["周"+SD[i],a[1],a[0]+"月",d.days.length>1?"+"+(d.days.length-1)+" 天":""]}
+ const t=d.dateText||"",m=/(\d+)\/(\d+)/.exec(t),w=/周[一二三四五六日]/.exec(t);
+ if(m)return[w?w[0]:"",m[2],m[1]+"月",/–|、/.test(t)?"多场":(/起/.test(t)?"起":"")];return["","—","待定",""]}
+const stubHtml=d=>{const [w,n,m,x]=stubParts(d);return `<div class="stub"><span class="wd">${w||"&nbsp;"}</span><span class="dn">${n}</span><span class="mo">${m}</span>${x?`<span class="xx">${x}</span>`:""}</div>`};
+const verdictEl=d=>d.verdict==="首选"?`<span class="badge 首选 stamp">首选</span>`:`<span class="badge ${d.verdict}">${d.verdict}</span>`;
+function card(d,showDate,i){const f=favs.has(d.id),tm=timeText(d);
+ return `<div class="card v-${d.verdict} ${open.has(d.id)?"open":""}" id="ev-${d.id}" data-id="${d.id}" style="--c:${colr(d)};--i:${Math.min(i,14)}"><i class="nt t"></i><i class="nt b"></i>
+<div class="tk">${stubHtml(d)}<div class="mn"><div class="c1"><span class="cat">${esc(catName(d.cat))}</span>${tm?`<span class="tm">${esc(tm)}</span>`:""}${flagsHtml(d)}<span class="rt">${f?`<span class="bm">${BMF}</span>`:""}${verdictEl(d)}</span></div>
+<h3 class="title">${esc(d.title)}</h3><div class="meta">${esc(d.place.split("，")[0])}<i>/</i>${esc(d.priceText.split("，")[0])}</div></div>${CHEV}</div>${detHtml(d)}</div>`}
+function gh(x,rank,top){const n=x.items.length,tp=top?`<u>首选 ${top}</u>`:"";
+ if(rank)return `<div class="gh"><b>${x.k}</b><i></i><em>${n} 场</em></div>`;
+ return x.k<9?`<div class="gh"><b>${DAYS[x.k]}</b><span>${DATES[x.k]}</span><i></i>${tp}<em>${n} 场</em></div>`:`<div class="gh"><b>更晚的活动</b><i></i>${tp}<em>${n} 场</em></div>`}
+function deckCard(d){const f=favs.has(d.id);
+ return `<div class="dk card v-${d.verdict} open" id="dkc" style="--c:${colr(d)}"><i class="nt t"></i><i class="nt b"></i><div class="tk">${stubHtml(d)}<div class="mn"><div class="c1"><span class="cat">${esc(catName(d.cat))}</span>${d.start?`<span class="tm">${t12(d.start)}</span>`:""}<span class="rt">${f?`<span class="bm">${BMF}</span>`:""}${verdictEl(d)}</span></div><h3 class="title">${esc(d.title)}</h3><div class="meta">${esc(d.place)}<i>/</i>${esc(d.priceText)}</div></div></div>
+<div class="det" style="display:block">${d.level!=="—"?`<div class="lv">${esc(d.level)}</div>`:""}<p class="desc">${esc(d.desc)}</p></div></div>`}
+function endCard(P){return `<div class="dk endc"><span class="stamp big">${P.length?"看完":"空"}</span><h3>${P.length?"这组看完啦":"没有可翻的卡"}</h3><p>已收藏 ${favs.size} 个活动</p>${P.length?'<button class="again" data-dk="again" type="button">再翻一遍</button>':""}<button class="again alt" data-dk="favs" type="button">只看我收藏的</button></div>`}
+function emptyHtml(){return `<div class="empty"><span class="stamp big">空场</span><div>${S.cat==="K-pop 演唱会"?"本周暂无演唱会":"没有符合条件的活动"}</div></div>`}
+if(typeof init==="function")init();render(1);
 </script><script src="push.js" defer></script></body></html>

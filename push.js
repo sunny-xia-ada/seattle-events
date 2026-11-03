@@ -127,4 +127,6 @@
   });
   window.addEventListener('pageshow', e => { if (e.persisted) checkForUpdate(); });
   window.addEventListener('focus', () => checkForUpdate());
+  // Also check while the page stays open in the foreground (iOS may never fire visibility/focus).
+  setInterval(() => { if (document.visibilityState === 'visible') checkForUpdate(); }, 120000);
 })();

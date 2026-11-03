@@ -160,10 +160,87 @@ body .card.hl{outline:3px solid var(--ink);outline-offset:3px;box-shadow:6px 6px
 @media(max-width:360px){.mast h1{font-size:64px}.mast h1 em{font-size:40px}.stub{width:64px}.nt{left:54px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 .card.open .nt.b,.dk .nt.b{display:none}
+/* ===== calendar view (preview) ===== */
+.vw{display:flex;border:2px solid var(--ink);background:var(--card);margin-bottom:16px;box-shadow:3px 3px 0 var(--ink)}
+.vw .vl{flex:none;display:flex;align-items:center;padding:0 12px;font-size:10.5px;font-weight:800;letter-spacing:.24em;color:var(--mu);border-right:2px solid var(--ink);background:repeating-linear-gradient(135deg,rgba(29,26,22,.05) 0 4px,transparent 4px 8px)}
+.vw button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 8px;font-size:15px;font-weight:800;letter-spacing:.06em;cursor:pointer;border:0;background:transparent;color:var(--ink);transition:background .2s,color .2s}
+.vw button+button{border-left:2px solid var(--ink)}
+.vw button.on{background:var(--ink);color:var(--paper)}
+.vw svg{width:17px;height:17px;display:block}
+#calw{display:none}
+.calmode #calw{display:block}
+.calmode .picks,.calmode .tabs,.calmode #dkw,.calmode #list,.calmode #days,.calmode #dl{display:none}
+.cwrap{margin:0 -8px 14px}
+.cw{border:2px solid var(--ink);background:var(--card);box-shadow:3px 3px 0 var(--ink)}
+.cwt{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:6px 8px 5px;border-bottom:2px solid var(--ink)}
+.cwt b{font-size:17px;line-height:24px;font-weight:900;letter-spacing:.08em}
+.cwt b i{font-family:var(--num);font-style:italic;color:var(--red);font-weight:700;margin-right:6px;letter-spacing:0}
+.cwt span{font-size:10.5px;font-weight:800;letter-spacing:.18em;color:var(--mu)}
+.cwk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cwk.hd span{background:var(--ink);color:var(--paper);text-align:center;font-size:10.5px;line-height:19px;font-weight:800;letter-spacing:.1em}
+.cwk.hd span:first-child,.cwk.hd span:last-child{color:#c9bfa8}
+.cd{min-width:0;min-height:96px;padding:3px 1.5px 2px;border-top:1px solid var(--ln);border-left:1px solid var(--ln)}
+.cwk.hd+.cwk .cd:nth-child(-n+7){border-top:0}
+.cd:nth-child(7n+1){border-left:0}
+.cd:nth-child(n+8){border-top:2px solid var(--ink)}
+.cd .dnum{display:block;width:26px;margin:0 auto 3px;text-align:center;font-family:var(--num);font-size:19px;line-height:26px;font-weight:700;letter-spacing:-.5px}
+.cd.we .dnum{color:#a79d89}
+.cd.out{background:repeating-linear-gradient(135deg,rgba(29,26,22,.07) 0 4px,transparent 4px 8px)}
+.cd.out .dnum{opacity:.4}
+.cd.td{background:rgba(216,49,42,.07)}
+.cd.td .dnum{background:var(--red);color:#fff;border-radius:3px;transform:rotate(-5deg);box-shadow:1.5px 1.5px 0 var(--ink)}
+.kc{--c:#6d6455;appearance:none;-webkit-appearance:none;display:block;width:100%;margin:0 0 3px;padding:2px 2px 2px 3px;text-align:left;font:inherit;color:var(--ink);cursor:pointer;min-width:0;overflow:hidden;border:1px solid rgba(29,26,22,.32);border-left:3px solid var(--c);border-radius:2px;background:#fffaf0;background:color-mix(in srgb,var(--c) 15%,#fffaf0)}
+.kc:active{transform:translate(1px,1px)}
+.kc b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:9.5px;line-height:11px;font-weight:900;overflow-wrap:anywhere}
+.kc u{display:flex;align-items:center;gap:2px;margin-top:1px;text-decoration:none;font-size:9px;line-height:11px;font-weight:800;color:var(--c);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden}
+.kc u em{font-style:normal}
+.kc .mk{font-style:normal;font-size:8.5px;line-height:10px;font-weight:900;padding:0 2px;border-radius:2px}
+.kc .mk.w{background:#fbe3a8;color:#85580a;box-shadow:0 0 0 1px #a96800}
+.kc .mk.g{background:#d8eddd;color:#1b6a3f}
+.kc .mk.s{padding:0;font-size:9px}
+.kc.v-首选{background:var(--c);color:#fff;border-color:var(--ink);border-left-color:var(--ink);box-shadow:1.5px 1.5px 0 var(--ink)}
+.kc.v-首选 u{color:#fff}
+.kc.v-低优先,.kc.v-可以略过{opacity:.55;border-style:dashed;border-left-style:solid}
+.kc.cf{border-color:#a96800;border-left-color:#a96800;background-image:repeating-linear-gradient(135deg,rgba(169,104,0,.16) 0 3px,transparent 3px 6px)}
+.kc.v-首选.cf{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.2) 0 3px,transparent 3px 6px);border-color:#a96800}
+.kc.cx{opacity:.8;background:#e4dfd2;border-color:rgba(29,26,22,.2);border-left-color:#9a9180;color:#8a8272}
+.kc.cx b{text-decoration:line-through}.kc.cx u{color:#8a8272}
+.cwlg{display:flex;flex-wrap:wrap;gap:4px 12px;padding:7px 8px;border-top:2px solid var(--ink);font-size:10.5px;line-height:15px;font-weight:800;color:var(--mu)}
+.cwlg i{font-style:normal;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.cwlg i:before{content:"";width:9px;height:9px;background:var(--c);border:1px solid rgba(29,26,22,.4)}
+.cwlg i.t:before{display:none}
+.lat{margin-top:14px;border:2px solid var(--ink);background:var(--card);box-shadow:3px 3px 0 var(--ink)}
+.lat h3{display:flex;align-items:baseline;gap:8px;margin:0;padding:6px 10px 5px;font-size:15px;line-height:22px;font-weight:900;letter-spacing:.1em;border-bottom:2px solid var(--ink)}
+.lat h3 em{font-style:normal;font-size:10.5px;letter-spacing:.14em;color:var(--mu)}
+.lt{--c:#6d6455;appearance:none;-webkit-appearance:none;display:flex;align-items:center;gap:8px;width:100%;padding:5px 10px 5px 8px;text-align:left;font:inherit;color:var(--ink);cursor:pointer;border:0;border-top:1px solid var(--ln);border-left:4px solid var(--c);background:transparent;min-width:0}
+.lat h3+.lt{border-top:0}
+.lt u{flex:none;width:76px;text-decoration:none;font-size:11px;line-height:16px;font-weight:800;color:var(--c);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lt b{flex:1;min-width:0;font-size:12.5px;line-height:18px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lt i{flex:none;font-style:normal;font-size:11px;font-weight:800;color:var(--mu);font-variant-numeric:tabular-nums}
+.lt.v-低优先{opacity:.6}
+/* bottom sheet */
+#shw{position:fixed;inset:0;z-index:50;display:none}
+#shw.on{display:block}
+body.shopen{overflow:hidden}
+.shb{position:absolute;inset:0;background:rgba(29,26,22,.5);animation:fi .2s ease-out}
+.sh{--c:#6d6455;position:absolute;left:0;right:0;bottom:0;max-width:640px;margin:0 auto;max-height:84vh;max-height:84dvh;overflow-y:auto;overscroll-behavior:contain;background:var(--paper);border:2px solid var(--ink);border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -4px 0 var(--c);padding:14px 14px max(16px,env(safe-area-inset-bottom));animation:up .25s cubic-bezier(.2,.9,.3,1)}
+.sh:before{content:"";display:block;width:42px;height:4px;border-radius:2px;background:rgba(29,26,22,.3);margin:-6px auto 10px}
+@keyframes up{from{transform:translateY(40px);opacity:0}}@keyframes fi{from{opacity:0}}
+.sh .shc{background:var(--card);border:2px solid var(--ink);border-radius:10px;box-shadow:3px 3px 0 var(--c);position:relative}
+.sh .shc .tk{padding-right:0}.sh .shc .mn{padding-right:40px}
+.sh .shc .nt{left:62px}
+.sh .shc .nt.b{display:none}
+.sh .det{display:block;animation:none}
+.sh .shx{position:absolute;top:6px;right:6px;z-index:4;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:50%;background:var(--card);cursor:pointer;padding:0}
+.sh .shx svg{width:14px;height:14px}
+.sh .go{display:block;width:100%;margin-top:12px;min-height:46px;font-size:15px;font-weight:800;letter-spacing:.06em;border:2px solid var(--ink);border-radius:4px;background:var(--ink);color:var(--paper);cursor:pointer}
+@media(min-width:520px){.kc b{font-size:11.5px;line-height:13px}.kc u{font-size:10.5px;line-height:13px}.cd{min-height:120px}.cd .dnum{font-size:22px}}
 </style></head><body><div class="wrap">
 <header class="mast"><div class="m1"><span>EVENT RADAR</span><span>SEATTLE / EASTSIDE</span></div>
 <h1><small>一丹的西雅图</small>活动<em>radar</em></h1>
 <div class="m2"><span class="dr">11/2 周一 – 11/11 周三</span><span class="adm">ADMIT ONE</span></div></header>
+<div class="vw" role="group" aria-label="视图"><span class="vl">VIEW</span><button class="on" id="vwl" type="button" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"><path d="M4 6h16M4 12h16M4 18h16"/></svg>列表</button><button id="vwc" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>日历</button></div>
+<div id="calw"></div>
 <section class="picks"><div class="pk1"><span>THIS WEEK'S LINEUP</span></div><h2>★ 本期首选</h2><ul>
 <li class="ai"><b>周二</b><span>AI Tinkerers（6–9 PM，需审核）</span></li>
 <li class="dance"><b>周四</b><span>7:00 Tina's Power Jazz</span></li>
@@ -178,7 +255,7 @@ body .card.hl{outline:3px solid var(--ink);outline-offset:3px;box-shadow:6px 6px
 <div id="dkw"><div class="stk" id="dks"></div><div class="sctl"><button class="rb" id="dkx" type="button" aria-label="跳过"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"><path d="M6 6l12 12M18 6 6 18"/></svg></button><div class="scn" id="dkn"></div><button class="rb lk" id="dkl" type="button" aria-label="收藏"><svg viewBox="0 0 14 18" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 2h10v14l-5-3.6L2 16z"/></svg></button></div><p class="dkhint">左右滑动，或点 ✕ / 书签；收藏的活动在「只看收藏」里</p></div>
 <section class="panel"><div class="ph"><h2>筛选</h2><button class="reset" id="rs" type="button">重置全部</button></div>
 <div class="fl">类型</div><div class="pills" id="cats"></div>
-<div class="fl">日期</div><div class="dstrip" id="days"></div>
+<div class="fl" id="dl">日期</div><div class="dstrip" id="days"></div>
 <details class="more"><summary>更多筛选 <svg class="ch" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6 6l4.5-4.5"/></svg></summary><div class="mp">
 <input type="search" id="q" placeholder="搜索歌名、老师、地点">
 <div class="r"><select id="area"><option value="">所有区域</option><option>Eastside</option><option>Seattle</option></select>
@@ -191,7 +268,7 @@ body .card.hl{outline:3px solid var(--ink);outline-offset:3px;box-shadow:6px 6px
 <div class="count" id="cnt"></div><div id="list"></div>
 <footer class="foot"><p class="src">「!」= 时间待核实或与日程冲突 · 已查 Outlook 日历：「✓」= 日历里已有（已订）；冲突 = 和日历事件，或 Tina's 固定课（周四 7:00、周五 6:00、周六 5:00）撞时间 · 本页 11/2（周一）刷新，覆盖周一到下周三（10 天）；舞蹈课时间和位子以各工作室官网为准</p>
 </footer>
-</div><script>
+</div><div id="shw"><div class="shb"></div><div class="sh" role="dialog" aria-modal="true"></div></div><script>
 const DAYS=["周一","周二","周三","周四","周五","周六","周日","周一","周二","周三"],SD=["一","二","三","四","五","六","日","一","二","三"],DATES=["11/2","11/3","11/4","11/5","11/6","11/7","11/8","11/9","11/10","11/11"];
 const RANK={首选:0,推荐:1,低优先:2,冲突:3};
 const CATS=[["","全部"],["舞蹈课","舞蹈"],["AI 活动","AI"],["当季活动","活动"],["K-pop 演唱会","演唱会"]];
@@ -320,5 +397,64 @@ function deckCard(d){const f=favs.has(d.id);
 <div class="det" style="display:block">${d.level!=="—"?`<div class="lv">${esc(d.level)}</div>`:""}<p class="desc">${esc(d.desc)}</p></div></div>`}
 function endCard(P){return `<div class="dk endc"><span class="stamp big">${P.length?"看完":"空"}</span><h3>${P.length?"这组看完啦":"没有可翻的卡"}</h3><p>已收藏 ${favs.size} 个活动</p>${P.length?'<button class="again" data-dk="again" type="button">再翻一遍</button>':""}<button class="again alt" data-dk="favs" type="button">只看我收藏的</button></div>`}
 function emptyHtml(){return `<div class="empty"><span class="stamp big">空场</span><div>${S.cat==="K-pop 演唱会"?"本周暂无演唱会":"没有符合条件的活动"}</div></div>`}
+/* ===== Calendar view (week grid) ===== */
+const CY=new Date().getFullYear();
+const dFrom=s=>{const m=/^(\d+)\/(\d+)/.exec(s||"");return m?new Date(CY,+m[1]-1,+m[2]):null};
+const WIN=DATES.map(dFrom);
+const G0=new Date(WIN[0]);G0.setDate(G0.getDate()-G0.getDay());
+const G1=new Date(WIN[WIN.length-1]);G1.setDate(G1.getDate()+6-G1.getDay());
+const ekey=dt=>(dt.getMonth()+1)+"/"+dt.getDate();
+const WINK=new Set(DATES);
+function tinfo(d){let h,m;if(d.start){h=+d.start.slice(0,2);m=+d.start.slice(3,5)}
+ else{const t=d.time||"",x=/(\d{1,2}):(\d{2})/.exec(t),a=/(AM|PM)/.exec(t);if(!x||!a)return{m:9999,s:""};h=(+x[1])%12+(a[1]==="PM"?12:0);m=+x[2]}
+ return{m:h*60+m,s:(h%12||12)+(m?":"+String(m).padStart(2,"0"):"")+(h>=12?"PM":"AM")}}
+const tshort=t=>t.replace(/[（(][^）)]*[）)]/g,"").replace(/^K-?pop:\s*/i,"").trim()||t;
+const isCx=d=>d.cancelled||/cancel|取消/i.test(d.title);
+function calMap(){const M={},later=[];
+ DATA.filter(d=>ok(d,Object.assign({},S,{day:null}))).forEach(d=>{const ti=tinfo(d);
+  if(d.days.length)d.days.forEach(i=>(M[DATES[i]]=M[DATES[i]]||[]).push({d,ti,di:i}));
+  else{const dt=dFrom(d.dateText);if(dt&&dt>=G0&&dt<=G1)(M[ekey(dt)]=M[ekey(dt)]||[]).push({d,ti,di:-1});else later.push(d)}});
+ Object.values(M).forEach(a=>a.sort((x,y)=>x.ti.m-y.ti.m));
+ later.sort((a,b)=>{const f=d=>{let x=dFrom(d.dateText)||new Date(CY,11,31);if(x<G0)x=new Date(CY+1,x.getMonth(),x.getDate());return x};return f(a)-f(b)});
+ return{M,later}}
+function chipH(x){const d=x.d,cl=["kc","v-"+d.verdict];if(d.clash||d.verdict==="冲突")cl.push("cf");if(isCx(d))cl.push("cx");
+ const mk=(d.booked?'<i class="mk g">✓</i>':"")+((d.clash||d.verdict==="冲突")?'<i class="mk w">!</i>':"");
+ return `<button type="button" class="${cl.join(" ")}" data-cal="${d.id}" data-di="${x.di}" style="--c:${colr(d)}" aria-label="${esc(d.title)} ${x.ti.s}"><b>${d.verdict==="首选"?"★ ":""}${esc(tshort(d.title))}</b><u><em>${x.ti.s||"&nbsp;"}</em>${mk}</u></button>`}
+function calHtml(){const {M,later}=calMap(),today=ekey(new Date()),cells=[];
+ for(let dt=new Date(G0);dt<=G1;dt.setDate(dt.getDate()+1)){const k=ekey(dt),w=dt.getDay(),cl=["cd"];
+  if(w===0||w===6)cl.push("we");if(!WINK.has(k))cl.push("out");if(k===today&&dt.getFullYear()===new Date().getFullYear())cl.push("td");
+  cells.push(`<div class="${cl.join(" ")}" data-k="${k}"><span class="dnum">${dt.getDate()}</span>${(M[k]||[]).map(chipH).join("")}</div>`)}
+ const m0=G0.getMonth()+1,m1=G1.getMonth()+1;
+ const lg=Object.keys(CCOL).map(c=>`<i style="--c:${CCOL[c]}">${esc(catName(c))}</i>`).join("")+'<i class="t">★ 首选</i><i class="t">✓ 已订</i><i class="t">! 冲突</i><i class="t">淡 = 低优先</i>';
+ const lt=later.length?`<section class="lat"><h3>之后 <em>HEADS-UP · ${later.length}</em></h3>${later.map(d=>{const dtx=(d.dateText||"").split("（")[0];return `<button type="button" class="lt v-${d.verdict}" data-cal="${d.id}" data-di="-1" style="--c:${colr(d)}"><u>${esc(dtx)}</u><b>${esc(tshort(d.title))}</b><i>${tinfo(d).s}</i></button>`}).join("")}</section>`:"";
+ return `<div class="cwrap"><div class="cw"><div class="cwt"><b><i>${G0.getFullYear()}</i>${m0===m1?m0+"月":m0+"–"+m1+"月"}</b><span>点日程看详情</span></div>
+<div class="cwk hd">${"SMTWTFS".split("").map(c=>`<span>${c}</span>`).join("")}</div><div class="cwk">${cells.join("")}</div><div class="cwlg">${lg}</div></div>${lt}</div>`}
+/* view toggle (remembered) */
+let vw="list";try{if(localStorage.getItem("sdView")==="cal")vw="cal"}catch(e){}
+if(/^#ev[-=]/.test(location.hash))vw="list";
+function setView(v){vw=v;try{localStorage.setItem("sdView",v)}catch(e){}if(v==="cal")dm=false;render()}
+function after(){const c=vw==="cal";document.body.classList.toggle("calmode",c);
+ vwl.classList.toggle("on",!c);vwc.classList.toggle("on",c);vwl.setAttribute("aria-pressed",!c);vwc.setAttribute("aria-pressed",c);
+ calw.innerHTML=c?calHtml():""}
+vwl.onclick=()=>setView("list");vwc.onclick=()=>setView("cal");
+addEventListener("hashchange",()=>{if(/^#ev[-=]/.test(location.hash)&&vw!=="list"){vw="list";render()}});
+/* bottom sheet */
+let shId=null,shDi=-1;
+function openSheet(id,di){const d=DATA.find(x=>x.id===id);if(!d)return;shId=id;shDi=di;const sd=S.day;if(di>=0)S.day=di;
+ const tm=timeText(d),f=favs.has(d.id),st=stubHtml(d);S.day=sd;
+ shw.querySelector(".sh").style.setProperty("--c",colr(d));
+ shw.querySelector(".sh").innerHTML=`<div class="shc"><button class="shx" type="button" data-sh="x" aria-label="关闭"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"><path d="M6 6l12 12M18 6 6 18"/></svg></button><i class="nt t"></i><div class="tk">${st}<div class="mn"><div class="c1"><span class="cat">${esc(catName(d.cat))}</span>${tm?`<span class="tm">${esc(tm)}</span>`:""}${flagsHtml(d)}${f?`<span class="bm">${BMF}</span>`:""}</div><h3 class="title">${esc(d.title)}</h3><div class="meta">${verdictEl(d)}</div></div></div>${detHtml(d)}</div><button class="go" type="button" data-sh="go">在列表中查看 ↓</button>`;
+ shw.classList.add("on");document.body.classList.add("shopen")}
+function closeSheet(){shw.classList.remove("on");document.body.classList.remove("shopen");shId=null}
+function goList(id){const d=DATA.find(x=>x.id===id);if(d&&S.day!==null&&!d.days.includes(S.day))S.day=null;
+ closeSheet();vw="list";try{localStorage.setItem("sdView","list")}catch(e){}open.add(id);render();
+ const c=document.getElementById("ev-"+id);if(c){c.scrollIntoView({block:"center"});c.classList.add("hl");setTimeout(()=>c.classList.remove("hl"),4000)}}
+calw.onclick=e=>{const b=e.target.closest("[data-cal]");if(b)openSheet(b.dataset.cal,+b.dataset.di)};
+shw.onclick=e=>{if(e.target.closest("a"))return;
+ if(e.target.classList.contains("shb")||e.target.closest('[data-sh="x"]')){closeSheet();return}
+ if(e.target.closest('[data-sh="go"]')){goList(shId);return}
+ const s=e.target.closest("[data-star]");
+ if(s){const id=s.dataset.star;favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("sdFavs",JSON.stringify([...favs]));render();openSheet(id,shDi)}};
+addEventListener("keydown",e=>{if(e.key==="Escape"&&shId)closeSheet()});
 if(typeof init==="function")init();render(1);
 </script><script src="push.js" defer></script></body></html>

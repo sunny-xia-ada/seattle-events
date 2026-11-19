@@ -235,6 +235,54 @@ body.shopen{overflow:hidden}
 .sh .shx svg{width:14px;height:14px}
 .sh .go{display:block;width:100%;margin-top:12px;min-height:46px;font-size:15px;font-weight:800;letter-spacing:.06em;border:2px solid var(--ink);border-radius:4px;background:var(--ink);color:var(--paper);cursor:pointer}
 @media(min-width:520px){.kc b{font-size:11.5px;line-height:13px}.kc u{font-size:10.5px;line-height:13px}.cd{min-height:120px}.cd .dnum{font-size:22px}}
+
+/* ===== day detail panel ===== */
+#dyw{position:fixed;inset:0;z-index:40;display:none}
+#dyw.on{display:block}
+body.dyopen{overflow:hidden}
+.dyb{position:absolute;inset:0;background:rgba(29,26,22,.5);animation:fi .2s ease-out}
+.dy{position:absolute;left:0;right:0;bottom:0;max-width:640px;margin:0 auto;height:92vh;height:92dvh;display:flex;flex-direction:column;background:var(--paper);border:2px solid var(--ink);border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -4px 0 var(--ink);overflow:hidden;animation:up .25s cubic-bezier(.2,.9,.3,1)}
+.dy:before{content:"";display:block;width:42px;height:4px;border-radius:2px;background:rgba(29,26,22,.3);margin:8px auto 0;flex:none}
+.dynav{flex:none;display:flex;align-items:center;gap:8px;padding:8px 12px 10px;border-bottom:2px solid var(--ink);background:var(--card)}
+.dynav .dyarr,.dynav .dyx{flex:none;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:50%;background:var(--card);cursor:pointer;padding:0;color:var(--ink)}
+.dynav .dyarr:disabled{opacity:.32;cursor:default}
+.dynav .dyarr svg,.dynav .dyx svg{width:16px;height:16px;display:block}
+.dynav .dyx{background:var(--ink);color:var(--paper)}
+.dyttl{flex:1;min-width:0;text-align:center}
+.dyttl b{display:block;font-size:20px;line-height:26px;font-weight:900;letter-spacing:.04em}
+.dyttl i{display:block;margin-top:2px;font-style:normal;font-size:11.5px;line-height:16px;font-weight:800;letter-spacing:.1em;color:var(--mu)}
+.dyttl i .tday{color:var(--red);letter-spacing:.14em}
+.dybd{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:14px 14px max(20px,env(safe-area-inset-bottom))}
+.dybd .card{cursor:default;margin-bottom:12px}
+.dybd .card:active{transform:none}
+.dybd .mn{padding-right:12px}
+.dydet{padding:12px 14px 14px;border-top:2px solid var(--ink);background:linear-gradient(180deg,rgba(29,26,22,.04),transparent 40px)}
+.dylink{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;margin-top:12px;border:2px solid var(--ink);border-radius:4px;background:var(--ink);color:var(--paper);font-size:15px;font-weight:800;letter-spacing:.06em;text-decoration:none}
+.dylink:active{transform:translate(1px,1px)}
+.dyempty{text-align:center;padding:56px 18px 36px;color:var(--mu)}
+.dyempty p{margin:0;font-size:15px;line-height:24px;font-weight:700}
+.dyempty p.hint{margin-top:8px;font-size:13px;line-height:20px;font-weight:600}
+.cd{cursor:pointer}
+.cd:active{filter:brightness(.97)}
+.cd.sel{box-shadow:inset 0 0 0 2px var(--ink);background:rgba(29,26,22,.06)}
+.cd.sel.td{background:rgba(216,49,42,.12)}
+.cev{min-width:0}
+.cmore{display:none;width:100%;margin:1px 0 0;padding:3px 0;min-height:22px;border:1px dashed rgba(29,26,22,.45);border-radius:2px;background:rgba(29,26,22,.06);font:inherit;font-size:9.5px;line-height:14px;font-weight:900;letter-spacing:.04em;color:var(--ink);cursor:pointer}
+.cd.over3 .cev .kc:nth-child(n+4){display:none}
+.cmore .m5{display:none}
+@media(min-width:520px){.cmore .m3{display:none}.cmore .m5{display:inline}}
+.cd.over3 .cmore{display:block}
+@media(min-width:520px){
+  .cd.over3 .cev .kc:nth-child(n+4){display:block}
+  .cd.over3:not(.over5) .cmore{display:none}
+  .cd.over5 .cev .kc:nth-child(n+6){display:none}
+  .cd.over5 .cmore{display:block;font-size:10.5px;min-height:24px}
+}
+@media(max-width:430px){
+  .dy{height:100vh;height:100dvh;max-height:none;border-radius:0;border-left:0;border-right:0;padding-top:env(safe-area-inset-top)}
+  .dy:before{display:none}
+  .dyttl b{font-size:18px;line-height:24px}
+}
 </style></head><body><div class="wrap">
 <header class="mast"><div class="m1"><span>EVENT RADAR</span><span>SEATTLE / EASTSIDE</span></div>
 <h1><small>一丹的西雅图</small>活动<em>radar</em></h1>
@@ -267,7 +315,7 @@ body.shopen{overflow:hidden}
 <div class="count" id="cnt"></div><div id="list"></div>
 <footer class="foot"><p class="src">「!」= 时间待核实或与日程冲突 · 已查 Outlook 日历和 iPhone 日历（11/19–11/27）：「✓」= 日历里已有（已订）；冲突 = 和日历事件（含 11/26–11/28 拉斯维加斯行程），或 Tina's 固定课（周四 7:00、周五 6:00、周六 5:00）撞时间 · 感恩节周：Westlake 11/26 闭馆，Tina's 官网 11/26、11/27 没排固定课 · 本页 11/18（周三）刷新，覆盖 11/19 周四到 11/27 周五（9 天）；舞蹈课时间和位子以各工作室官网为准</p>
 </footer>
-</div><div id="shw"><div class="shb"></div><div class="sh" role="dialog" aria-modal="true"></div></div><script>
+</div><div id="shw"><div class="shb"></div><div class="sh" role="dialog" aria-modal="true"></div></div><div id="dyw"><div class="dyb" data-dy="x"></div><div class="dy" role="dialog" aria-modal="true" aria-labelledby="dytitle"></div></div><script>
 const DAYS=["周四","周五","周六","周日","周一","周二","周三","周四","周五"],SD=["四","五","六","日","一","二","三","四","五"],DATES=["11/19","11/20","11/21","11/22","11/23","11/24","11/25","11/26","11/27"];
 const RANK={首选:0,推荐:1,低优先:2,冲突:3};
 const CATS=[["","全部"],["舞蹈课","舞蹈"],["AI 活动","AI"],["当季活动","活动"],["K-pop 演唱会","演唱会"]];
@@ -325,7 +373,7 @@ const DATA=[
 ];
 let S={cat:"",day:null,q:"",area:"",sort:"time",mp:"",hc:false,fo:false,sk:false};
 let favs=new Set(JSON.parse(localStorage.getItem("sdFavs")||"[]")),open=new Set();
-const p=new URLSearchParams(decodeURIComponent(location.hash.slice(1)));if(p.get("cat"))S.cat=p.get("cat");if(p.get("day"))S.day=+p.get("day");
+const p=new URLSearchParams(decodeURIComponent(location.hash.slice(1)));if(p.get("cat"))S.cat=p.get("cat");{const dy=p.get("day");if(dy&&/^\d+$/.test(dy))S.day=+dy}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 /* ---- UI-only helpers ---- */
 const t12=s=>{if(!s)return"";const h=+s.slice(0,2);return(h%12||12)+":"+s.slice(3)+(h>=12?" PM":" AM")};
@@ -434,21 +482,24 @@ function chipH(x){const d=x.d,cl=["kc","v-"+d.verdict];if(d.clash||d.verdict==="
 function calHtml(){const {M,later}=calMap(),today=ekey(new Date()),cells=[];
  for(let dt=new Date(G0);dt<=G1;dt.setDate(dt.getDate()+1)){const k=ekey(dt),w=dt.getDay(),cl=["cd"];
   if(w===0||w===6)cl.push("we");if(!WINK.has(k))cl.push("out");if(k===today&&dt.getFullYear()===new Date().getFullYear())cl.push("td");
-  cells.push(`<div class="${cl.join(" ")}" data-k="${k}"><span class="dnum">${dt.getDate()}</span>${(M[k]||[]).map(chipH).join("")}</div>`)}
+  const evs=M[k]||[],n=evs.length,xl=n>3?` over3${n>5?" over5":""}`:"";
+  const lab=`查看 ${dt.getMonth()+1}月${dt.getDate()}日`;
+  const moreBtn=n>3?`<button type="button" class="cmore" data-dayk="${k}" aria-label="${lab}，共 ${n} 场">+<span class="m3">${n-3}</span><span class="m5">${Math.max(n-5,0)}</span></button>`:"";
+  cells.push(`<div class="${cl.join(" ")}${xl}" data-k="${k}" aria-label="${lab}${n?`，${n} 场`:""}"><span class="dnum">${dt.getDate()}</span><div class="cev">${evs.map(chipH).join("")}</div>${moreBtn}</div>`)}
  const m0=G0.getMonth()+1,m1=G1.getMonth()+1;
  const lg=Object.keys(CCOL).map(c=>`<i style="--c:${CCOL[c]}">${esc(catName(c))}</i>`).join("")+'<i class="t">★ 首选</i><i class="t">✓ 已订</i><i class="t">! 冲突</i><i class="t">淡 = 低优先</i>';
  const lt=later.length?`<section class="lat"><h3>之后 <em>HEADS-UP · ${later.length}</em></h3>${later.map(d=>{const dtx=(d.dateText||"").split("（")[0];return `<button type="button" class="lt v-${d.verdict}" data-cal="${d.id}" data-di="-1" style="--c:${colr(d)}"><u>${esc(dtx)}</u><b>${esc(tshort(d.title))}</b><i>${tinfo(d).s}</i></button>`}).join("")}</section>`:"";
- return `<div class="cwrap"><div class="cw"><div class="cwt"><b><i>${G0.getFullYear()}</i>${m0===m1?m0+"月":m0+"–"+m1+"月"}</b><span>点日程看详情</span></div>
+ return `<div class="cwrap"><div class="cw"><div class="cwt"><b><i>${G0.getFullYear()}</i>${m0===m1?m0+"月":m0+"–"+m1+"月"}</b><span>点日期看当天</span></div>
 <div class="cwk hd">${"SMTWTFS".split("").map(c=>`<span>${c}</span>`).join("")}</div><div class="cwk">${cells.join("")}</div><div class="cwlg">${lg}</div></div>${lt}</div>`}
 /* view toggle (remembered) */
+let dyK=null;
 let vw="list";try{if(localStorage.getItem("sdView")==="cal")vw="cal"}catch(e){}
-if(/^#ev[-=]/.test(location.hash))vw="list";
-function setView(v){vw=v;try{localStorage.setItem("sdView",v)}catch(e){}if(v==="cal")dm=false;render()}
+if(/^#ev[-=]/.test(location.hash))vw="list";else if(/[#&?]day=\d{4}-\d{2}-\d{2}/.test(location.hash))vw="cal";
+function setView(v){vw=v;try{localStorage.setItem("sdView",v)}catch(e){}if(v==="cal")dm=false;if(v!=="cal"&&typeof closeDay==="function")closeDay();render()}
 function after(){const c=vw==="cal";document.body.classList.toggle("calmode",c);
  vwl.classList.toggle("on",!c);vwc.classList.toggle("on",c);vwl.setAttribute("aria-pressed",!c);vwc.setAttribute("aria-pressed",c);
- calw.innerHTML=c?calHtml():""}
+ calw.innerHTML=c?calHtml():"";if(c&&dyK){const el=calw.querySelector('.cd[data-k="'+dyK+'"]');if(el)el.classList.add("sel")}}
 vwl.onclick=()=>setView("list");vwc.onclick=()=>setView("cal");
-addEventListener("hashchange",()=>{if(/^#ev[-=]/.test(location.hash)&&vw!=="list"){vw="list";render()}});
 /* bottom sheet */
 let shId=null,shDi=-1;
 function openSheet(id,di){const d=DATA.find(x=>x.id===id);if(!d)return;shId=id;shDi=di;const sd=S.day;if(di>=0)S.day=di;
@@ -460,12 +511,70 @@ function closeSheet(){shw.classList.remove("on");document.body.classList.remove(
 function goList(id){const d=DATA.find(x=>x.id===id);if(d&&S.day!==null&&!d.days.includes(S.day))S.day=null;
  closeSheet();vw="list";try{localStorage.setItem("sdView","list")}catch(e){}open.add(id);render();
  const c=document.getElementById("ev-"+id);if(c){c.scrollIntoView({block:"center"});c.classList.add("hl");setTimeout(()=>c.classList.remove("hl"),4000)}}
-calw.onclick=e=>{const b=e.target.closest("[data-cal]");if(b)openSheet(b.dataset.cal,+b.dataset.di)};
+calw.onclick=e=>{const b=e.target.closest("[data-cal]");if(b){openSheet(b.dataset.cal,+b.dataset.di);return}
+ const cell=e.target.closest(".cd[data-k]");if(cell)openDay(cell.dataset.k)};
 shw.onclick=e=>{if(e.target.closest("a"))return;
  if(e.target.classList.contains("shb")||e.target.closest('[data-sh="x"]')){closeSheet();return}
  if(e.target.closest('[data-sh="go"]')){goList(shId);return}
  const s=e.target.closest("[data-star]");
  if(s){const id=s.dataset.star;favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("sdFavs",JSON.stringify([...favs]));render();openSheet(id,shDi)}};
-addEventListener("keydown",e=>{if(e.key==="Escape"&&shId)closeSheet()});
+/* ===== per-day detail ===== */
+const dyw=document.getElementById("dyw"),dyp=dyw.querySelector(".dy");
+const WD=["周日","周一","周二","周三","周四","周五","周六"];
+let hashLock=false;
+function dateFromK(k){for(let dt=new Date(G0);dt<=G1;dt.setDate(dt.getDate()+1)){if(ekey(dt)===k)return new Date(dt)}
+ const m=/^(\d+)\/(\d+)$/.exec(k||"");return m?new Date(CY,+m[1]-1,+m[2]):null}
+function isoFromK(k){const dt=dateFromK(k);return dt?dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0"):""}
+function kFromIso(iso){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(iso||"");return m?(+m[2])+"/"+(+m[3]):""}
+function isoFromHash(){try{const dy=new URLSearchParams(decodeURIComponent(location.hash.slice(1))).get("day");return dy&&/^\d{4}-\d{2}-\d{2}$/.test(dy)?dy:""}catch(e){return""}}
+function dayLabel(dt){return dt.getMonth()+1+"月"+dt.getDate()+"日 "+WD[dt.getDay()]}
+function gridKeys(){const a=[];for(let dt=new Date(G0);dt<=G1;dt.setDate(dt.getDate()+1))a.push(ekey(new Date(dt)));return a}
+function dayItems(k){const items=[];
+ DATA.forEach(d=>{if(d.cat==="可以略过"&&!S.sk)return;
+  if(d.days.length)d.days.forEach(i=>{if(DATES[i]===k)items.push({d,ti:tinfo(d),di:i})});
+  else{const dt=dFrom(d.dateText);if(dt&&ekey(dt)===k)items.push({d,ti:tinfo(d),di:-1})}});
+ items.sort((a,b)=>a.ti.m-b.ti.m);return items}
+function dayCard(x){const d=x.d,f=favs.has(d.id),sd=S.day;if(x.di>=0)S.day=x.di;const st=stubHtml(d);S.day=sd;
+ const href=d.src?`<a class="dylink" href="${d.src}" target="_blank" rel="noopener">打开官方页面 ↗</a>`:"";
+ return `<article class="card dyc v-${d.verdict}" style="--c:${colr(d)}"><i class="nt t"></i>
+<div class="tk">${st}<div class="mn"><div class="c1"><span class="cat">${esc(catName(d.cat))}</span>${flagsHtml(d)}${f?`<span class="bm">${BMF}</span>`:""}<span class="rt">${verdictEl(d)}</span></div>
+<h3 class="title">${esc(d.title)}</h3><div class="meta">${esc((d.place||"").split("，")[0])}<i>/</i>${esc((d.priceText||"未注明").split("，")[0])}</div></div></div>
+<div class="dydet"><dl><div><dt>时间</dt><dd>${esc(d.time||timeText(d)||"时间未注明")}</dd></div><div><dt>地点</dt><dd>${esc(d.place||"地点未注明")}</dd></div><div><dt>价格</dt><dd>${esc(d.priceText||"未注明")}</dd></div></dl>${href}</div></article>`}
+function setDayHash(k){const iso=k?isoFromK(k):"",want=iso?"#day="+iso:"";
+ if((location.hash||"")===want||(!iso&&!location.hash))return;
+ hashLock=true;history.replaceState(null,"",location.pathname+location.search+want);hashLock=false}
+function paintDay(k){const dt=dateFromK(k);if(!dt)return;dyK=k;
+ const keys=gridKeys(),ix=keys.indexOf(k),items=dayItems(k),n=items.length;
+ const today=ekey(new Date())===k&&dt.getFullYear()===new Date().getFullYear();
+ const inWin=WINK.has(k);
+ const sub=(n?n+" 场":"没有活动")+(today?' · <span class="tday">今天</span>':"")+(inWin?"":" · 不在本期");
+ const prev=ix>0?keys[ix-1]:"",next=ix>=0&&ix<keys.length-1?keys[ix+1]:"";
+ const empty=n?"":`<div class="dyempty"><span class="stamp big">空场</span><p>${dayLabel(dt)}，雷达里还没有活动。</p><p class="hint">${inWin?"去左右看看别的日子，或回到日历再选一天。":"这一天不在本期 "+DATES[0]+"–"+DATES[DATES.length-1]+" 范围内。"}</p></div>`;
+ dyp.innerHTML=`<div class="dynav"><button class="dyarr" type="button" data-dy="prev" aria-label="前一天" ${prev?"":"disabled"}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"><path d="M14.5 5 7.5 12l7 7"/></svg></button>
+<div class="dyttl"><b id="dytitle">${dayLabel(dt)}</b><i>${sub}</i></div>
+<button class="dyarr" type="button" data-dy="next" aria-label="后一天" ${next?"":"disabled"}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="square"><path d="M9.5 5l7 7-7 7"/></svg></button>
+<button class="dyx" type="button" data-dy="x" aria-label="关闭"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+<div class="dybd">${n?items.map(dayCard).join(""):empty}</div>`;
+ dyp.dataset.prev=prev;dyp.dataset.next=next;
+ document.querySelectorAll("#calw .cd.sel").forEach(el=>el.classList.remove("sel"));
+ const cell=calw.querySelector('.cd[data-k="'+k+'"]');if(cell)cell.classList.add("sel")}
+function openDay(k,opts){if(!k||!dateFromK(k))return;if(vw!=="cal"){vw="cal";try{localStorage.setItem("sdView","cal")}catch(e){}render()}
+ paintDay(k);dyw.classList.add("on");document.body.classList.add("dyopen");if(!opts||!opts.hash)setDayHash(k)}
+function closeDay(){if(!dyK){dyw.classList.remove("on");document.body.classList.remove("dyopen");return}
+ dyK=null;dyw.classList.remove("on");document.body.classList.remove("dyopen");
+ document.querySelectorAll("#calw .cd.sel").forEach(el=>el.classList.remove("sel"));
+ if(isoFromHash())setDayHash("")}
+function navDay(dir){if(!dyK)return;const k=dir<0?dyp.dataset.prev:dyp.dataset.next;if(k)openDay(k)}
+dyw.onclick=e=>{if(e.target.closest("a"))return;
+ const b=e.target.closest("[data-dy]");if(!b)return;
+ if(b.dataset.dy==="x")closeDay();
+ else if(b.dataset.dy==="prev")navDay(-1);
+ else if(b.dataset.dy==="next")navDay(1)};
+addEventListener("keydown",e=>{
+ if(e.key==="Escape"){if(shId){closeSheet();return}if(dyK)closeDay();return}
+ if(dyK&&!shId){if(e.key==="ArrowLeft"){e.preventDefault();navDay(-1)}if(e.key==="ArrowRight"){e.preventDefault();navDay(1)}}});
+addEventListener("hashchange",()=>{if(hashLock)return;if(/^#ev[-=]/.test(location.hash)&&vw!=="list"){if(dyK)closeDay();vw="list";render();return}
+ const iso=isoFromHash();if(iso){const k=kFromIso(iso);if(k&&k!==dyK)openDay(k,{hash:1})}else if(dyK){dyK=null;dyw.classList.remove("on");document.body.classList.remove("dyopen");document.querySelectorAll("#calw .cd.sel").forEach(el=>el.classList.remove("sel"))}});
 if(typeof init==="function")init();render(1);
+{const iso=isoFromHash();if(iso)openDay(kFromIso(iso),{hash:1})}
 </script><script src="push.js" defer></script></body></html>
